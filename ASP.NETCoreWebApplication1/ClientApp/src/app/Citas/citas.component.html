@@ -1,0 +1,7 @@
+<div id="centraldiv" class="portfolio-item mx-auto">
+  <div id="title">Cita</div>
+  <div *ngFor="let element of saludo|keyvalue" class="form-floating mb-3">
+    <p class="text-decoration-underline" font-size="16">{{element.key}}</p>
+    <input class="form-control-lg mx-auto" placeholder="Espacio requerido" value="{{element.value}}">
+  </div>
+</div>

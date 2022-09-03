@@ -1,0 +1,19 @@
+#centraldiv{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+#title{
+  align-content: center;
+  alignment: center;
+  font-size: larger;
+  text-align: center;
+  display: inline;
+  margin-bottom: auto;
+}
+p{
+  font-size:20px ;
+  alignment: center;
+}
+div{
+}
