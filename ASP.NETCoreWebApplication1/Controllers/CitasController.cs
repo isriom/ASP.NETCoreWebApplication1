@@ -8,23 +8,17 @@ namespace ASP.NETCoreWebApplication1.Controllers;
 public class CitasController : Controller
 {
     private static CitasController? _instance;
-    Data.cita prueba = new Data.cita();
+    Data.cita prueba;
     private List<Data.cita> Citas = new List<Data.cita>();
 
     public CitasController()
     {
-        User.IsInRole("Administrators");
-        if (CitasController._instance != null)
-        {
-            this.prueba = CitasController._instance.prueba;
-        }
-        else
-        {
-            this.prueba.Cliente = "Cliente de prueba";
-            this.prueba.placa = 1115486;
-            this.prueba.sucursal = "Sucursal de prueba";
-            this.prueba.servicio = "Servicio de prueba";
-        }
+        prueba = new Data.cita();
+        // User.IsInRole("Administrators");
+        this.prueba.Cliente = "Cliente de prueba";
+        this.prueba.placa = 1115486;
+        this.prueba.sucursal = "Sucursal de prueba";
+        this.prueba.servicio = "Servicio de prueba";
     }
 
 
@@ -47,22 +41,30 @@ public class CitasController : Controller
 
     [HttpGet]
     [Route("")]
-    public ActionResult See()
+    public ActionResult template()
     {
+        prueba = new Data.cita();
+        User.IsInRole("Administrators");
+        this.prueba.Cliente = "Cliente de prueba";
+        this.prueba.placa = 1115486;
+        this.prueba.sucursal = "Sucursal de prueba";
+        this.prueba.servicio = "Servicio de prueba";
+        
+
         string jsonstring = System.Text.Json.JsonSerializer.Serialize<Data.cita>(prueba);
-        System.Console.Out.Write("jsonstring:");
-        System.Console.Out.Write(jsonstring);
 
         return Content(jsonstring);
     }
 
     [HttpPost]
     [Route("")]
-    public ActionResult Insert(Data.cita data)
+    public ActionResult Insert(string data)
     {
         Console.Out.Write("Prueba");
         Console.Out.Write(data);
         string jsonstring = System.Text.Json.JsonSerializer.Serialize<Data.cita>(prueba);
+        System.Console.Out.Write("jsonstring:\n");
+        System.Console.Out.Write(jsonstring);
         return CreatedAtAction(nameof(Insert), new Data.cita());
     }
 }

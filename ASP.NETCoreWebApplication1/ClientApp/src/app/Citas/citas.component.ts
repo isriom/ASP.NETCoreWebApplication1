@@ -12,12 +12,19 @@ import {Template} from "@angular/compiler/src/render3/r3_ast";
   styleUrls: ['./citas.component.css']
 })
 
+
+
 export class CitasComponent implements OnInit {
   respuesta: any | undefined;
   http: HttpClient;
   router: Router | undefined;
   baseurl: string;
-
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'my-auth-token'
+    })
+  };
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.http = http;
     this.baseurl = baseUrl;
@@ -40,14 +47,14 @@ export class CitasComponent implements OnInit {
   }
 
   async Add_Button() {
-    let template = {cliente:"",placa:"",sucursal:"",servicio:""};
+    let template = {cliente: "", placa: "", sucursal: "", servicio: ""};
     template.cliente = (<HTMLInputElement>document.getElementById("Cliente")).value;
     template.placa = (<HTMLInputElement>document.getElementById("placa")).value;
     template.sucursal = (<HTMLInputElement>document.getElementById("sucursal")).value;
     template.servicio = (<HTMLInputElement>document.getElementById("servicio")).value;
     console.log(this.respuesta);
     console.log(template);
-    let res = await this.http.post("https://localhost:7143/Citas", template)
+    let res = await this.http.post("https://localhost:7143/Citas", template, this.httpOptions)
     console.log(res)
   }
 

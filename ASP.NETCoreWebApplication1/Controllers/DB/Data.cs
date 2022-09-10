@@ -8,6 +8,14 @@ public class Data
         public int? placa { get; set; }
         public string? sucursal { get; set; }
         public string? servicio { get; set; }
+
+        public cita()
+        {
+            this.Cliente = "";
+            this.placa = null;
+            this.sucursal = "";
+            this.servicio = "";
+        }
     }
     
     public class loginUser

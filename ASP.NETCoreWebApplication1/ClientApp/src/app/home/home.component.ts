@@ -9,7 +9,8 @@ import {Router} from "@angular/router";
 
 
 export class HomeComponent implements OnInit {
-  token = sessionStorage.getItem("tokenKey");
+  // token = sessionStorage.getItem("tokenKey");
+  token = null;
   headers = {};
   respuesta = {};
   http: HttpClient;
