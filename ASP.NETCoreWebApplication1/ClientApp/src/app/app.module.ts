@@ -7,17 +7,17 @@ import {RouterModule} from '@angular/router';
 import {AppComponent} from './app.component';
 import {NavMenuComponent} from './nav-menu/nav-menu.component';
 import {HomeComponent} from './home/home.component';
-import {CounterComponent} from './counter/counter.component';
-import {FetchDataComponent} from './fetch-data/fetch-data.component';
 import {CitasComponent} from "./Citas/citas.component";
+import {ClientesComponent} from "./Clientes/Clientes.component";
+import {trabajadoresComponent} from "./trabajadores/trabajadores.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
+    trabajadoresComponent,
+    ClientesComponent,
     CitasComponent,
   ],
   imports: [
@@ -26,8 +26,8 @@ import {CitasComponent} from "./Citas/citas.component";
     FormsModule,
     RouterModule.forRoot([
       {path: '', component: HomeComponent, pathMatch: 'full'},
-      {path: 'counter', component: CounterComponent},
-      {path: 'fetch-data', component: FetchDataComponent},
+      {path: 'trabajadores', component: trabajadoresComponent},
+      {path: 'Clientes', component: ClientesComponent},
       {path: 'Citas', data: {title: "Citas"}, component: CitasComponent}
     ])
   ],

@@ -1,6 +1,5 @@
 ﻿using ASP.NETCoreWebApplication1.Controllers.DB;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace ASP.NETCoreWebApplication1.Controllers;
 
@@ -8,15 +7,16 @@ namespace ASP.NETCoreWebApplication1.Controllers;
 [Route("[controller]")]
 public class CitasController : Controller
 {
-    private static CitasController instance = null;
+    private static CitasController? _instance;
     Data.cita prueba = new Data.cita();
-    private Data.cita[] Citas = null;
+    private List<Data.cita> Citas = new List<Data.cita>();
 
     public CitasController()
     {
-        if (CitasController.instance != null)
+        User.IsInRole("Administrators");
+        if (CitasController._instance != null)
         {
-            this.prueba = CitasController.instance.prueba;
+            this.prueba = CitasController._instance.prueba;
         }
         else
         {
@@ -50,9 +50,12 @@ public class CitasController : Controller
     public ActionResult See()
     {
         string jsonstring = System.Text.Json.JsonSerializer.Serialize<Data.cita>(prueba);
+        System.Console.Out.Write("jsonstring:");
+        System.Console.Out.Write(jsonstring);
+
         return Content(jsonstring);
     }
-    
+
     [HttpPost]
     [Route("")]
     public ActionResult Insert(Data.cita data)
@@ -60,6 +63,6 @@ public class CitasController : Controller
         Console.Out.Write("Prueba");
         Console.Out.Write(data);
         string jsonstring = System.Text.Json.JsonSerializer.Serialize<Data.cita>(prueba);
-        return CreatedAtAction(nameof(Insert),new Data.cita());
+        return CreatedAtAction(nameof(Insert), new Data.cita());
     }
 }

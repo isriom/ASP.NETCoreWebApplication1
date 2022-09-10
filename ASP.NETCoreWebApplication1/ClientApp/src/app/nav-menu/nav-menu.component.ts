@@ -7,7 +7,10 @@ import { Component } from '@angular/core';
 })
 export class NavMenuComponent {
   isExpanded = false;
-
+  // token = sessionStorage.getItem("tokenKey");
+  token =true;
+  // rol = sessionStorage.getItem("rol");
+  rol = 'trabajador';
   collapse() {
     this.isExpanded = false;
   }

@@ -9,4 +9,22 @@ public class Data
         public string? sucursal { get; set; }
         public string? servicio { get; set; }
     }
+    
+    public class loginUser
+    {
+        public string? usuario { get; set; }
+        public string? contraseña { get; set; }
+
+        public loginUser()
+        {
+            this.usuario = "";
+            this.contraseña = "";
+        }
+
+        public loginUser(string? contraseña = null, string usuario = null)
+        {
+            this.usuario = usuario;
+            this.contraseña = contraseña;
+        }
+    }
 }
