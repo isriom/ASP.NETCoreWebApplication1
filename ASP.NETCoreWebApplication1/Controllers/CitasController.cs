@@ -1,9 +1,11 @@
 ﻿using ASP.NETCoreWebApplication1.Controllers.DB;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ASP.NETCoreWebApplication1.Controllers;
 
 [ApiController]
+[AllowAnonymous]
 [Route("[controller]")]
 public class CitasController : Controller
 {

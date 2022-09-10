@@ -13,7 +13,6 @@ import {Template} from "@angular/compiler/src/render3/r3_ast";
 })
 
 
-
 export class CitasComponent implements OnInit {
   respuesta: any | undefined;
   http: HttpClient;
@@ -21,10 +20,10 @@ export class CitasComponent implements OnInit {
   baseurl: string;
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: 'my-auth-token'
+      'Content-Type': 'application/json'
     })
   };
+
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.http = http;
     this.baseurl = baseUrl;
@@ -54,7 +53,12 @@ export class CitasComponent implements OnInit {
     template.servicio = (<HTMLInputElement>document.getElementById("servicio")).value;
     console.log(this.respuesta);
     console.log(template);
-    let res = await this.http.post("https://localhost:7143/Citas", template, this.httpOptions)
+    let res = await this.http.post("https://localhost:7143/Citas", template)
+    res.subscribe(result => {
+      this.respuesta = result;
+      console.log(this.respuesta);
+
+    }, error => console.error(error));
     console.log(res)
   }
 
