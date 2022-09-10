@@ -1,13 +1,16 @@
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(
         policy =>
         {
             policy.WithOrigins("https://localhost:7143", "https://localhost:44477", "https://localhost:44366",
-                "https://localhost:33863").AllowAnyHeader();
+                "https://localhost:33863");
+            policy.AllowAnyOrigin();
+            policy.AllowAnyHeader();
         });
 });
 
