@@ -17,6 +17,7 @@ public class Data
             this.Servicio_solicitado = "";
         }
     }
+
     public class G_trabajadores
     {
         public string? Nombre { get; set; }
@@ -40,10 +41,11 @@ public class Data
             this.Rol = "";
         }
     }
+
     public class G_clientes
     {
         public string? Nombre_Completo { get; set; }
-        
+
         public int? Cedula { get; set; }
         public string? Correo_electronico { get; set; }
         public string? Direccion1 { get; set; }
@@ -64,11 +66,11 @@ public class Data
             this.Usuario = "";
         }
     }
-    
+
     public class G_ClientesVC
     {
         public string? Nombre_Completo { get; set; }
-        
+
         public int? Cedula { get; set; }
         public string? Correo_electronico { get; set; }
         public string? Direccion1 { get; set; }
@@ -76,7 +78,7 @@ public class Data
         public int? Telefono_1 { get; set; }
         public int? Telefono_2 { get; set; }
         public string? Usuario { get; set; }
-        
+
         public string? Password { get; set; }
 
         public G_ClientesVC()
@@ -103,7 +105,6 @@ public class Data
             this.Cliente = "";
             this.Numero_de_Factura = null;
         }
-
     }
 
     public class loginUser

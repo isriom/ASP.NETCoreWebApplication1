@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace ASP.NETCoreWebApplication1.Controllers;
 [ApiController]
 [AllowAnonymous]
-[Route("[controller]")]
 public class CFacturasController : Controller
 {
     private static CFacturasController? _instance;
@@ -24,7 +23,7 @@ public class CFacturasController : Controller
 
 
     [HttpGet]
-    [Route("/{data}")]
+    [Route("[controller]/{data}")]
     public ActionResult Register(string? data)
     {
         string jsonstring = System.Text.Json.JsonSerializer.Serialize<Data.Consulta_factura>(facturap);
@@ -32,7 +31,7 @@ public class CFacturasController : Controller
     }
 
     [HttpGet]
-    [Route("/{id:int}")]
+    [Route("[controller]/{id:int}")]
     public ActionResult Consult(int? id)
     {
         string jsonstring = System.Text.Json.JsonSerializer.Serialize<Data.Consulta_factura>(facturap);
@@ -41,11 +40,11 @@ public class CFacturasController : Controller
 
 
     [HttpGet]
-    [Route("")]
+    [Route("[controller]/plantilla")]
     public ActionResult template()
     {
         facturap = new Data.Consulta_factura();
-        User.IsInRole("Administrators");
+        // User.IsInRole("Administrators");
         this.facturap.Cliente = "Felix";
         this.facturap.Numero_de_Factura = 9;
         
@@ -57,7 +56,7 @@ public class CFacturasController : Controller
     }
 
     [HttpPost]
-    [Route("")]
+    [Route("[controller]/post")]
     public ActionResult Insert(string data)
     {
         Console.Out.Write("Prueba");

@@ -47,7 +47,7 @@ public class trabajadoresController : Controller
 
 
     [HttpGet]
-    [Route("")]
+    [Route("/plantilla")]
     public ActionResult template()
     {
         ejemplo = new Data.G_trabajadores();

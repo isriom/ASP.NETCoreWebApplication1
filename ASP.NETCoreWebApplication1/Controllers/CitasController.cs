@@ -42,7 +42,7 @@ public class CitasController : Controller
 
 
     [HttpGet]
-    [Route("")]
+    [Route("[controller]//plantilla")]
     public ActionResult template()
     {
         prueba = new Data.cita();

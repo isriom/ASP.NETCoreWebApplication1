@@ -33,8 +33,19 @@ export class GClientesComponent {
     }, error => console.error(error));
     console.log(this.respuesta);
   }
+
   async Add_Button() {
-    let template = {Nombre: "", Numero_Cedula: "", Telefono1: "", Telefono2: "", Correo_e:"", Direccion1: "", Direccion2: "",Usuario: "", Password: ""};
+    let template = {
+      Nombre: "",
+      Numero_Cedula: "",
+      Telefono1: "",
+      Telefono2: "",
+      Correo_e: "",
+      Direccion1: "",
+      Direccion2: "",
+      Usuario: "",
+      Password: ""
+    };
     template.Nombre = (<HTMLInputElement>document.getElementById("Nombre")).value;
     template.Numero_Cedula = (<HTMLInputElement>document.getElementById("Numero de Cedula")).value;
     template.Telefono1 = (<HTMLInputElement>document.getElementById("Telefono 1")).value;

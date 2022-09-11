@@ -31,7 +31,7 @@ export class CFacturasComponent {
   }
 
   async Consultar_Factura() {
-    var res = await this.http.get<string>("https://localhost:7143/CFactura",).subscribe(result => {
+    var res = await this.http.get<string>("https://localhost:7143/CFacturas/plantilla",).subscribe(result => {
       this.respuesta = result;
       console.log(this.respuesta);
 
@@ -47,7 +47,7 @@ export class CFacturasComponent {
     template.n_factura = (<HTMLInputElement>document.getElementById("Numero de Placa")).value;
     console.log(this.respuesta);
     console.log(template);
-    let res = await this.http.post("https://localhost:7143/CFactura", template)
+    let res = await this.http.post("https://localhost:7143/CFacturas/plantilla", template)
     res.subscribe(result => {
       this.respuesta = result;
       console.log(this.respuesta);

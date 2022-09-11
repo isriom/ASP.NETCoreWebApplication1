@@ -42,7 +42,7 @@ public class RCitasController : Controller
 
 
     [HttpGet]
-    [Route("")]
+    [Route("/plantilla")]
     public ActionResult template()
     {
         prueba = new Data.cita();

@@ -52,7 +52,7 @@ public class ClientesController : Controller
     public ActionResult template()
     {
         ejemplo = new Data.G_clientes();
-        User.IsInRole("Administrators");
+        // User.IsInRole("Administrators");
         this.ejemplo.Nombre_Completo = "Armando";
         this.ejemplo.Correo_electronico = "vcevvbceo@bbgx.com";
         this.ejemplo.Cedula = 321547841;
