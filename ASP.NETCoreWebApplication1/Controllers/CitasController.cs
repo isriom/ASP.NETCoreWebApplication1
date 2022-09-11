@@ -60,7 +60,7 @@ public class CitasController : Controller
 
     [HttpPost]
     [Route("")]
-    public ActionResult Insert(Data.cita? cita)
+    public ActionResult Insert(Data.cita cita)
     {
         Console.Out.Write("Prueba");
         Console.Out.Write(cita+"\n");
