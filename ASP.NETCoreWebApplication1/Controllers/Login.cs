@@ -31,14 +31,14 @@ public class loginController : Controller
     public async Task<ActionResult> login(Data.loginUser data)
     {
         Console.Out.Write("data\n");
-        var aut = await AuthenticateUser(data.usuario, data.usuario);
+        var aut = await AuthenticateUser(data.Usuario, data.Usuario);
         Console.Out.Write(data);
 
         if (aut)
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, data.usuario),
+                new Claim(ClaimTypes.Name, data.Usuario),
                 new Claim(ClaimTypes.Role, "Trabajador"),
             };
             var claimIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
