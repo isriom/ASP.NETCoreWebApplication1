@@ -1,0 +1,5 @@
+﻿<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="All in ASP_NETCoreWebApplication1-endpoints" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" path="$APPLICATION_CONFIG_DIR$/scratches/ASP_NETCoreWebApplication1-endpoints.http">
+    <method v="2" />
+  </configuration>
+</component>
