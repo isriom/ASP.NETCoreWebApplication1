@@ -20,7 +20,9 @@ export class CitasComponent implements OnInit {
   baseurl: string;
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Data':'*',
+      'Accept':"json",
     })
   };
 
@@ -46,20 +48,25 @@ export class CitasComponent implements OnInit {
   }
 
   async Add_Button() {
-    let template = {cliente: "", placa: "", sucursal: "", servicio: ""};
-    template.cliente = (<HTMLInputElement>document.getElementById("Cliente")).value;
-    template.placa = (<HTMLInputElement>document.getElementById("Placa")).value;
-    template.sucursal = (<HTMLInputElement>document.getElementById("Sucursal")).value;
-    template.servicio = (<HTMLInputElement>document.getElementById("Servicio")).value;
+    const answer = {
+      'cliente': (<HTMLInputElement>document.getElementById("Cliente")).value,
+      'placa': (<HTMLInputElement>document.getElementById("placa")).value,
+      "sucursal": (<HTMLInputElement>document.getElementById("sucursal")).value,
+      "servicio": (<HTMLInputElement>document.getElementById("servicio")).value
+    };
     console.log(this.respuesta);
-    console.log(template);
-    let res = await this.http.post("https://localhost:7143/Citas", template)
+    console.log(answer);
+    const res = this.http.post<string>("https://localhost:7143/Citas", JSON.stringify(answer), this.httpOptions);
     res.subscribe(result => {
+      console.log(answer);
+
       this.respuesta = result;
       console.log(this.respuesta);
 
     }, error => console.error(error));
     console.log(res)
+    console.log(answer);
+
   }
 
   async Delete_Button() {

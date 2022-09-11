@@ -60,13 +60,11 @@ public class CitasController : Controller
 
     [HttpPost]
     [Route("")]
-    public ActionResult Insert(string data)
+    public ActionResult Insert(Data.cita cita)
     {
         Console.Out.Write("Prueba");
-        Console.Out.Write(data);
-        string jsonstring = System.Text.Json.JsonSerializer.Serialize<Data.cita>(prueba);
-        System.Console.Out.Write("jsonstring:\n");
-        System.Console.Out.Write(jsonstring);
-        return CreatedAtAction(nameof(Insert), new Data.cita());
+        Console.Out.Write(cita+"\n");
+        string jsonstring = System.Text.Json.JsonSerializer.Serialize<Data.cita>(cita);
+        return CreatedAtAction(nameof(Insert), cita);
     }
 }

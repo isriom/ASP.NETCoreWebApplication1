@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
+
 
 builder.Services.AddCors(options =>
 {
@@ -7,14 +9,25 @@ builder.Services.AddCors(options =>
         policy =>
         {
             policy.WithOrigins("https://localhost:7143", "https://localhost:44477", "https://localhost:44366",
-                "https://localhost:33863").AllowAnyHeader();
+                "https://localhost:33863");
+            policy.AllowAnyOrigin();
+            policy.AllowAnyHeader();
         });
 });
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "";
+        options.AccessDeniedPath = "";
+    });
+
+builder.Services.AddHttpContextAccessor();
 
 // Add services to the container.
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllers();
 
+//Start app
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -29,6 +42,10 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseCors();
+
+app.UseAuthentication();
+app.UseAuthorization();
+app.UseCookiePolicy(new CookiePolicyOptions());
 
 app.MapControllerRoute(
     name: "default",
