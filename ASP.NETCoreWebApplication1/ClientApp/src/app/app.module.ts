@@ -10,6 +10,9 @@ import {HomeComponent} from './home/home.component';
 import {CitasComponent} from "./Citas/citas.component";
 import {ClientesComponent} from "./Clientes/Clientes.component";
 import {trabajadoresComponent} from "./trabajadores/trabajadores.component";
+import {CFacturasComponent} from "./CFacturas/c-facturas.component";
+import {GClientesComponent} from "./GClientes/GClientes.component";
+import {RCitasComponent} from "./RCitas/Rcitas.component";
 
 @NgModule({
   declarations: [
@@ -19,6 +22,9 @@ import {trabajadoresComponent} from "./trabajadores/trabajadores.component";
     trabajadoresComponent,
     ClientesComponent,
     CitasComponent,
+    CFacturasComponent,
+    GClientesComponent,
+    RCitasComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
@@ -26,9 +32,12 @@ import {trabajadoresComponent} from "./trabajadores/trabajadores.component";
     FormsModule,
     RouterModule.forRoot([
       {path: '', component: HomeComponent, pathMatch: 'full'},
-      {path: 'trabajadores', component: trabajadoresComponent},
-      {path: 'Clientes', component: ClientesComponent},
-      {path: 'Citas', data: {title: "Citas"}, component: CitasComponent}
+      {path: 'trabajadores',data: {title: "Gestion Trabajadores"}, component: trabajadoresComponent},
+      {path: 'Clientes', data: {title: "Clientes"}, component: ClientesComponent},
+      {path: 'Citas', data: {title: "Citas"}, component: CitasComponent},
+      {path: 'CFactura', data: {title: "Consulta Facturas"}, component: CFacturasComponent},
+      {path: 'RCitas', data: {title: "Citas"}, component: RCitasComponent},
+      {path: 'GClientes', data: {title: "Gestion de Clientes"}, component: GClientesComponent}
     ])
   ],
   providers: [],

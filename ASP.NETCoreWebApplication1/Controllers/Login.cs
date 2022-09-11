@@ -15,8 +15,8 @@ public class loginController : Controller
     [Route("login/plantilla")]
     public ActionResult plantilla(string? data)
     {
-        this.template.contraseña = null;
-        this.template.usuario = null;
+        this.template.Contraseña = null;
+        this.template.Usuario = null;
         string jsonstring = System.Text.Json.JsonSerializer.Serialize<Data.loginUser>(template);
         return Content(jsonstring);
     }

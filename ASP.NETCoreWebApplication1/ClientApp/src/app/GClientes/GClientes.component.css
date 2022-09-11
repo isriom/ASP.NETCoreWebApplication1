@@ -1,4 +1,4 @@
-.element-input{
+﻿.element-input{
   width: 100%;
 }
 
@@ -20,8 +20,8 @@
   text-align: center;
   display: inline;
   margin-bottom: auto;
-  background-color: #f5c2c7;
   font-weight: bold;
+  background-color:#C8E700;
 }
 
 #Buttons {display: flex;
@@ -44,8 +44,8 @@ p {
 button{
   border-radius: 4px;
   gap: 1px;
-  background-color: #f8e1e1;
-  border-color: #781001;
+  background-color: #FBFA96;
+  border-color: #046148;
   border-style: dot-dash;
 }
 div {

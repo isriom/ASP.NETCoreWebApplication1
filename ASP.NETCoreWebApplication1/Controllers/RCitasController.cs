@@ -7,13 +7,13 @@ namespace ASP.NETCoreWebApplication1.Controllers;
 [ApiController]
 [AllowAnonymous]
 [Route("[controller]")]
-public class CitasController : Controller
+public class RCitasController : Controller
 {
     private static CitasController? _instance;
     Data.cita prueba;
     private List<Data.cita> Citas = new List<Data.cita>();
 
-    public CitasController()
+    public RCitasController()
     {
         prueba = new Data.cita();
         // User.IsInRole("Administrators");

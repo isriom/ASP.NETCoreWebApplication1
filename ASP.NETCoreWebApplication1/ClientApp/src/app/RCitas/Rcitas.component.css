@@ -20,7 +20,7 @@
   text-align: center;
   display: inline;
   margin-bottom: auto;
-  background-color: #f5c2c7;
+  background-color: #A67FF5;
   font-weight: bold;
 }
 
@@ -44,8 +44,8 @@ p {
 button{
   border-radius: 4px;
   gap: 1px;
-  background-color: #f8e1e1;
-  border-color: #781001;
+  background-color: #D2A3FE;
+  border-color: #4E0E8A;
   border-style: dot-dash;
 }
 div {

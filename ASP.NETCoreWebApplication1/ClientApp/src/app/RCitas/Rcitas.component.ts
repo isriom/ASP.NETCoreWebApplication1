@@ -7,13 +7,13 @@ import {Router} from '@angular/router';
 import {Template} from "@angular/compiler/src/render3/r3_ast";
 
 @Component({
-  selector: 'app-citas',
-  templateUrl: './citas.component.html',
-  styleUrls: ['./citas.component.css']
+  selector: 'app-RCitas',
+  templateUrl: './Rcitas.component.html',
+  styleUrls: ['./Rcitas.component.css']
 })
 
 
-export class CitasComponent implements OnInit {
+export class RCitasComponent {
   respuesta: any | undefined;
   http: HttpClient;
   router: Router | undefined;
@@ -31,7 +31,7 @@ export class CitasComponent implements OnInit {
   }
 
   async Obtener_Cita() {
-    var res = await this.http.get<string>("https://localhost:7143/Citas",).subscribe(result => {
+    var res = await this.http.get<string>("https://localhost:7143/RCitas",).subscribe(result => {
       this.respuesta = result;
       console.log(this.respuesta);
 
@@ -39,11 +39,7 @@ export class CitasComponent implements OnInit {
     console.log(this.respuesta);
   }
 
-  ngOnInit(): void {
-    if (localStorage.getItem("token") == null) {
-      this.router?.navigateByUrl("");
-    }
-  }
+
 
   async Add_Button() {
     let template = {cliente: "", placa: "", sucursal: "", servicio: ""};
@@ -53,7 +49,7 @@ export class CitasComponent implements OnInit {
     template.servicio = (<HTMLInputElement>document.getElementById("Servicio")).value;
     console.log(this.respuesta);
     console.log(template);
-    let res = await this.http.post("https://localhost:7143/Citas", template)
+    let res = await this.http.post("https://localhost:7143/RCitas", template)
     res.subscribe(result => {
       this.respuesta = result;
       console.log(this.respuesta);
