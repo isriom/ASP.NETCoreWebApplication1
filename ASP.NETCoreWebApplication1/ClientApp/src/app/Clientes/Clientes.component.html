@@ -1,16 +1,13 @@
-<div *ngIf="token!==null;else elseBlock ">
-  <ng-template>
-    <div *ngFor="let element of respuesta|keyvalue" class="form-floating mb-3">
-      <p class="text-decoration-underline" font-size="16">{{element.key}}</p>
-      <input id="{{element.key}}" class="form-control-lg mx-auto element-input" placeholder="Espacio requerido"
-             value="">
-    </div>
-  </ng-template>
-</div>
-
-<ng-template #elseBlock>
-  <div *ngFor="let element of respuesta|keyvalue" class="form-floating mb-3 align-content-center">
+<div id="centraldiv" class="portfolio-item mx-auto">
+  <div id="title">Gestion de Clientes VT </div>
+  <div *ngFor="let element of respuesta|keyvalue" class="form-floating mb-3">
     <p class="text-decoration-underline" font-size="16">{{element.key}}</p>
-    <p class="text-decoration-underline" font-size="16">{{element.value}}</p>
+    <input id="{{element.key}}" class="form-control-lg mx-auto element-input" placeholder="Espacio requerido"
+           value="">
   </div>
-</ng-template>
+  <div id="Buttons">
+    <button id="add" (click)="Add_Button()" class="form-floating">ADD</button>
+    <button id="delete" (click)="Delete_Button()">Delete</button>
+
+  </div>
+</div>

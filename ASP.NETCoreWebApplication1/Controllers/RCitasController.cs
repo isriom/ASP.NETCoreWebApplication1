@@ -7,13 +7,13 @@ namespace ASP.NETCoreWebApplication1.Controllers;
 [ApiController]
 [AllowAnonymous]
 [Route("[controller]")]
-public class CitasController : Controller
+public class RCitasController : Controller
 {
     private static CitasController? _instance;
     Data.cita prueba;
     private List<Data.cita> Citas = new List<Data.cita>();
 
-    public CitasController()
+    public RCitasController()
     {
         prueba = new Data.cita();
         // User.IsInRole("Administrators");
@@ -60,11 +60,13 @@ public class CitasController : Controller
 
     [HttpPost]
     [Route("")]
-    public ActionResult Insert(Data.cita cita)
+    public ActionResult Insert(string data)
     {
         Console.Out.Write("Prueba");
-        Console.Out.Write(cita+"\n");
-        string jsonstring = System.Text.Json.JsonSerializer.Serialize<Data.cita>(cita);
-        return CreatedAtAction(nameof(Insert), cita);
+        Console.Out.Write(data);
+        string jsonstring = System.Text.Json.JsonSerializer.Serialize<Data.cita>(prueba);
+        System.Console.Out.Write("jsonstring:\n");
+        System.Console.Out.Write(jsonstring);
+        return CreatedAtAction(nameof(Insert), new Data.cita());
     }
 }
