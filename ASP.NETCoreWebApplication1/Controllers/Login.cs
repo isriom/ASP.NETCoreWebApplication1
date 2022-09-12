@@ -10,11 +10,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace ASP.NETCoreWebApplication1.Controllers;
 
 [ApiController]
-[AllowAnonymous]
 public class loginController : Controller
 {
     public Data.loginUser template = new Data.loginUser();
 
+    [AllowAnonymous]
     [HttpGet]
     [Route("login/plantilla")]
     public ActionResult plantilla(string? data)
@@ -25,9 +25,9 @@ public class loginController : Controller
         return Content(jsonstring);
     }
 
-
+    [AllowAnonymous]
     [HttpPut]
-    [Route("/login")]
+    [Route("/login/Singin")]
     public async Task<ActionResult> login(Data.loginUser data)
     {
         Console.Out.Write("data\n");
@@ -43,11 +43,14 @@ public class loginController : Controller
             };
             var claimIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                new ClaimsPrincipal(claimIdentity), new AuthenticationProperties());
-            HttpContext.Response.Cookies.Append("dinero","500");
-            Console.Out.Write( System.Text.Json.JsonSerializer.Serialize(
-            HttpContext.Request.Cookies));
-            return Ok(HttpContext.Response.Cookies);
+                new ClaimsPrincipal(claimIdentity), new AuthenticationProperties()
+                {
+                    IsPersistent = true,
+                });
+            Console.Out.Write(System.Text.Json.JsonSerializer.Serialize(
+                HttpContext.Request.Cookies.ToString()));
+            return Content(System.Text.Json.JsonSerializer.Serialize(
+                HttpContext.Request.Cookies));
         }
 
         return NotFound(data);
@@ -57,5 +60,14 @@ public class loginController : Controller
     {
         //Implementar codigo para revisar base de datos
         return true;
+    }
+
+    [Authorize]
+    [HttpPut]
+    [Route("/logout")]
+    public async Task<ActionResult> logout(Data.loginUser data)
+    {
+        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        return Ok(data);
     }
 }

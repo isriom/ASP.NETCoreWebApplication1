@@ -15,7 +15,8 @@ export class GClientesComponent {
   baseurl: string;
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'withCredentials':'true'
     })
   };
 
@@ -26,7 +27,7 @@ export class GClientesComponent {
   }
 
   async Obtener_Clientes() {
-    var res = await this.http.get<string>("https://localhost:7143/GClientes/plantilla",).subscribe(result => {
+    var res = await this.http.get<string>("https://localhost:7143/GClientes/plantilla",{headers:this.httpOptions.headers, withCredentials:true}).subscribe(result => {
       this.respuesta = result;
       console.log(this.respuesta);
 

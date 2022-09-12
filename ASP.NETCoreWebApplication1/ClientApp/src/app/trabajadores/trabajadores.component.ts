@@ -16,7 +16,8 @@ export class trabajadoresComponent {
   baseurl: string;
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'withCredentials':'true'
     })
   };
   elseBlock: any;
@@ -29,7 +30,7 @@ export class trabajadoresComponent {
   }
 
   async Obtener_trabajadores() {
-    var res = await this.http.get<string>("https://localhost:7143/trabajadores/plantilla",).subscribe(result => {
+    var res = await this.http.get<string>("https://localhost:7143/trabajadores/plantilla",{headers:this.httpOptions.headers, withCredentials:true}).subscribe(result => {
       this.respuesta = result;
       console.log(this.respuesta);
 

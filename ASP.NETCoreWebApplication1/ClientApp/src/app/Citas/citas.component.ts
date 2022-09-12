@@ -21,8 +21,7 @@ export class CitasComponent implements OnInit {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Data':'*',
-      'Accept':"json",
+      'withCredentials':'true'
     })
   };
 
@@ -33,7 +32,7 @@ export class CitasComponent implements OnInit {
   }
 
   async Obtener_Cita() {
-    var res = await this.http.get<string>("https://localhost:7143/Citas/plantilla",).subscribe(result => {
+    var res = await this.http.get<string>("https://localhost:7143/Citas/plantilla",{headers:this.httpOptions.headers, withCredentials:true}).subscribe(result => {
       this.respuesta = result;
       console.log(this.respuesta);
 

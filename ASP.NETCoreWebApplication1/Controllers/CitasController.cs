@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ASP.NETCoreWebApplication1.Controllers;
 [ApiController]
-[AllowAnonymous]
+[Authorize]
 
 public class CitasController : Controller
 {

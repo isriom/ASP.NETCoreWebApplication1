@@ -20,7 +20,8 @@ export class CFacturasComponent {
   baseurl: string;
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'withCredentials':'true'
     })
   };
 
@@ -31,7 +32,7 @@ export class CFacturasComponent {
   }
 
   async Consultar_Factura() {
-    var res = await this.http.get<string>("https://localhost:7143/CFacturas/plantilla",).subscribe(result => {
+    var res = await this.http.get<string>("https://localhost:7143/CFacturas/plantilla",{headers:this.httpOptions.headers, withCredentials:true}).subscribe(result => {
       this.respuesta = result;
       console.log(this.respuesta);
 

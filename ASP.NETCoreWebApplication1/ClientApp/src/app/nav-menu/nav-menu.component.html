@@ -15,7 +15,7 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div *ngIf="token!==null" class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
+      <div *ngIf="token==='True'" class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
            [ngClass]="{ show: isExpanded }"
       >
         <div *ngIf="rol=== 'trabajador';else elseBlock ">

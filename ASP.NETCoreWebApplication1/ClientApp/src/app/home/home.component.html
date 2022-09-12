@@ -1,14 +1,18 @@
-<div *ngIf="token===null;then thenBlock else elseBlock "></div>
+<div *ngIf="token!=='True';then thenBlock else elseBlock "></div>
 <ng-template #thenBlock>
   <div *ngFor="let element of respuesta|keyvalue" class="form-floating mb-3 align-content-center">
     <p class="text-decoration-underline" font-size="15">{{element.key}}</p>
     <input id="{{element.key}}" class="form-control-lg mx-auto element-input" placeholder="Espacio requerido"
            value="">
   </div>
+  <div id="Buttons-log-in">
+    <button id="Sig_in" (click)="Sig_In()" class="form-floating">SIGN IN</button>
+  </div>
 </ng-template>
 <ng-template #elseBlock>
-  <div *ngFor="let element of respuesta|keyvalue" class="form-floating mb-3 align-content-center">
-    <p class="text-decoration-underline" font-size="16">{{element.key}}</p>
-    <p class="text-decoration-underline" font-size="16">{{element.value}}</p>
+    <p class="text-decoration-underline" font-size="16">Usuario</p>
+    <p id="NAME" class="" font-size="16">{{user}}</p>
+  <div id="Buttons-LLog-out">
+    <button id="Log-Out" (click)="Log_out()" class="form-floating">SIGN OUT</button>
   </div>
 </ng-template>
