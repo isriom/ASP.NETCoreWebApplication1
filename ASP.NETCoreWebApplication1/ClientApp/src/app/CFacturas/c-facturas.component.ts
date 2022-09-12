@@ -42,12 +42,14 @@ export class CFacturasComponent {
 
 
   async Consult_Button() {
-    let template = {cliente: "", n_factura: ""};
-    template.cliente = (<HTMLInputElement>document.getElementById("Cliente")).value;
-    template.n_factura = (<HTMLInputElement>document.getElementById("Numero de Placa")).value;
+    const answer = {
+      'cliente': (<HTMLInputElement>document.getElementById("Cliente")).value,
+      'n_factura': (<HTMLInputElement>document.getElementById("Numero de Placa")).value
+    };
+
     console.log(this.respuesta);
-    console.log(template);
-    let res = await this.http.post("https://localhost:7143/CFacturas/plantilla", template)
+    console.log(answer);
+    let res = await this.http.post("https://localhost:7143/CFacturas/post", JSON.stringify(answer), this.httpOptions)
     res.subscribe(result => {
       this.respuesta = result;
       console.log(this.respuesta);

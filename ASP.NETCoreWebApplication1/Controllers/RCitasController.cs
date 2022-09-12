@@ -6,10 +6,10 @@ namespace ASP.NETCoreWebApplication1.Controllers;
 
 [ApiController]
 [AllowAnonymous]
-[Route("[controller]")]
+
 public class RCitasController : Controller
 {
-    private static CitasController? _instance;
+    private static RCitasController? _instance;
     Data.cita prueba;
     private List<Data.cita> Citas = new List<Data.cita>();
 
@@ -25,7 +25,7 @@ public class RCitasController : Controller
 
 
     [HttpGet]
-    [Route("/{data}")]
+    [Route("[controller]/{data}")]
     public ActionResult Register(string? data)
     {
         string jsonstring = System.Text.Json.JsonSerializer.Serialize<Data.cita>(prueba);
@@ -33,7 +33,7 @@ public class RCitasController : Controller
     }
 
     [HttpGet]
-    [Route("/{id:int}")]
+    [Route("[controller]/{id:int}")]
     public ActionResult Consult(int? id)
     {
         string jsonstring = System.Text.Json.JsonSerializer.Serialize<Data.cita>(prueba);
@@ -42,7 +42,7 @@ public class RCitasController : Controller
 
 
     [HttpGet]
-    [Route("/plantilla")]
+    [Route("[controller]/plantilla")]
     public ActionResult template()
     {
         prueba = new Data.cita();
@@ -59,7 +59,7 @@ public class RCitasController : Controller
     }
 
     [HttpPost]
-    [Route("")]
+    [Route("[controller]/post")]
     public ActionResult Insert(string data)
     {
         Console.Out.Write("Prueba");

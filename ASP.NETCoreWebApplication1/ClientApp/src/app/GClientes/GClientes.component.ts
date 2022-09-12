@@ -26,7 +26,7 @@ export class GClientesComponent {
   }
 
   async Obtener_Clientes() {
-    var res = await this.http.get<string>("https://localhost:7143/GClientes",).subscribe(result => {
+    var res = await this.http.get<string>("https://localhost:7143/GClientes/plantilla",).subscribe(result => {
       this.respuesta = result;
       console.log(this.respuesta);
 
@@ -35,29 +35,21 @@ export class GClientesComponent {
   }
 
   async Add_Button() {
-    let template = {
-      Nombre: "",
-      Numero_Cedula: "",
-      Telefono1: "",
-      Telefono2: "",
-      Correo_e: "",
-      Direccion1: "",
-      Direccion2: "",
-      Usuario: "",
-      Password: ""
+    const answer = {
+      'Nombre': (<HTMLInputElement>document.getElementById("Nombre")).value,
+      'Numero_Cedula':(<HTMLInputElement>document.getElementById("Numero de Cedula")).value,
+      'Telefono1': (<HTMLInputElement>document.getElementById("Telefono 1")).value,
+      'Telefono2': (<HTMLInputElement>document.getElementById("Telefono 2")).value,
+      'Correo_e': (<HTMLInputElement>document.getElementById("Correo electronico")).value,
+      'Direccion1': (<HTMLInputElement>document.getElementById("Direccion 1")).value,
+      'Direccion2': (<HTMLInputElement>document.getElementById("Direccion 2")).value,
+      'Usuario': (<HTMLInputElement>document.getElementById("Usuario")).value,
+      'Password': (<HTMLInputElement>document.getElementById("Password")).value
     };
-    template.Nombre = (<HTMLInputElement>document.getElementById("Nombre")).value;
-    template.Numero_Cedula = (<HTMLInputElement>document.getElementById("Numero de Cedula")).value;
-    template.Telefono1 = (<HTMLInputElement>document.getElementById("Telefono 1")).value;
-    template.Telefono2 = (<HTMLInputElement>document.getElementById("Telefono 2")).value;
-    template.Correo_e = (<HTMLInputElement>document.getElementById("Correo electronico")).value;
-    template.Direccion1 = (<HTMLInputElement>document.getElementById("Direccion 1")).value;
-    template.Direccion2 = (<HTMLInputElement>document.getElementById("Direccion 2")).value;
-    template.Usuario = (<HTMLInputElement>document.getElementById("Usuario")).value;
-    template.Password = (<HTMLInputElement>document.getElementById("Password")).value;
+
     console.log(this.respuesta);
-    console.log(template);
-    let res = await this.http.post("https://localhost:7143/GClientes", template)
+    console.log(answer);
+    let res = await this.http.post("https://localhost:7143/GClientes/post", JSON.stringify(answer), this.httpOptions)
     res.subscribe(result => {
       this.respuesta = result;
       console.log(this.respuesta);

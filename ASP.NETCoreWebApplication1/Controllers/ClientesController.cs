@@ -5,9 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace ASP.NETCoreWebApplication1.Controllers;
 [ApiController]
 [AllowAnonymous]
-[Route("[controller]")]
-
-
 public class ClientesController : Controller
 {
     private static ClientesController? _instance;
@@ -31,7 +28,7 @@ public class ClientesController : Controller
 
 
     [HttpGet]
-    [Route("/{data}")]
+    [Route("[controller]/{data}")]
     public ActionResult Register(string? data)
     {
         string jsonstring = System.Text.Json.JsonSerializer.Serialize<Data.G_clientes>(ejemplo);
@@ -39,7 +36,7 @@ public class ClientesController : Controller
     }
 
     [HttpGet]
-    [Route("/{id:int}")]
+    [Route("[controller]/{id:int}")]
     public ActionResult Consult(int? id)
     {
         string jsonstring = System.Text.Json.JsonSerializer.Serialize<Data.G_clientes>(ejemplo);
@@ -48,7 +45,7 @@ public class ClientesController : Controller
 
 
     [HttpGet]
-    [Route("")]
+    [Route("[controller]/plantilla")]
     public ActionResult template()
     {
         ejemplo = new Data.G_clientes();
@@ -69,7 +66,7 @@ public class ClientesController : Controller
     }
 
     [HttpPost]
-    [Route("")]
+    [Route("[controller]/post")]
     public ActionResult Insert(string data)
     {
         Console.Out.Write("Prueba");

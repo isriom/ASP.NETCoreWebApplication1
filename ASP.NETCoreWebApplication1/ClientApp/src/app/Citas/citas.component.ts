@@ -33,7 +33,7 @@ export class CitasComponent implements OnInit {
   }
 
   async Obtener_Cita() {
-    var res = await this.http.get<string>("https://localhost:7143/Citas",).subscribe(result => {
+    var res = await this.http.get<string>("https://localhost:7143/Citas/plantilla",).subscribe(result => {
       this.respuesta = result;
       console.log(this.respuesta);
 
@@ -56,7 +56,7 @@ export class CitasComponent implements OnInit {
     };
     console.log(this.respuesta);
     console.log(answer);
-    const res = this.http.post<string>("https://localhost:7143/Citas", JSON.stringify(answer), this.httpOptions);
+    const res = this.http.post<string>("https://localhost:7143/Citas/post", JSON.stringify(answer), this.httpOptions);
     res.subscribe(result => {
       console.log(answer);
 

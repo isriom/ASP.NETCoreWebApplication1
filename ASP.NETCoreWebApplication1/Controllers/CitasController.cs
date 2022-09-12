@@ -3,10 +3,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ASP.NETCoreWebApplication1.Controllers;
-
 [ApiController]
 [AllowAnonymous]
-[Route("[controller]")]
+
 public class CitasController : Controller
 {
     private static CitasController? _instance;
@@ -25,7 +24,7 @@ public class CitasController : Controller
 
 
     [HttpGet]
-    [Route("/{data}")]
+    [Route("[controller]/{data}")]
     public ActionResult Register(string? data)
     {
         string jsonstring = System.Text.Json.JsonSerializer.Serialize<Data.cita>(prueba);
@@ -33,7 +32,7 @@ public class CitasController : Controller
     }
 
     [HttpGet]
-    [Route("/{id:int}")]
+    [Route("[controller]/{id:int}")]
     public ActionResult Consult(int? id)
     {
         string jsonstring = System.Text.Json.JsonSerializer.Serialize<Data.cita>(prueba);
@@ -42,7 +41,7 @@ public class CitasController : Controller
 
 
     [HttpGet]
-    [Route("[controller]//plantilla")]
+    [Route("[controller]/plantilla")]
     public ActionResult template()
     {
         prueba = new Data.cita();
@@ -59,7 +58,7 @@ public class CitasController : Controller
     }
 
     [HttpPost]
-    [Route("")]
+    [Route("[controller]/post")]
     public ActionResult Insert(Data.cita cita)
     {
         Console.Out.Write("Prueba");

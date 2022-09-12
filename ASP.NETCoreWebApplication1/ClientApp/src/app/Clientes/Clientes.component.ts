@@ -26,7 +26,7 @@ export class ClientesComponent {
   }
 
   async Obtener_Clientes() {
-    var res = await this.http.get<string>("https://localhost:7143/Clientes",).subscribe(result => {
+    var res = await this.http.get<string>("https://localhost:7143/Clientes/plantilla",).subscribe(result => {
       this.respuesta = result;
       console.log(this.respuesta);
 
@@ -34,18 +34,20 @@ export class ClientesComponent {
     console.log(this.respuesta);
   }
   async Add_Button() {
-    let template = {Nombre: "", Numero_Cedula: "", Telefono1: "", Telefono2: "", Correo_e:"", Direccion1: "", Direccion2: "",Usuario: ""};
-    template.Nombre = (<HTMLInputElement>document.getElementById("Nombre")).value;
-    template.Numero_Cedula = (<HTMLInputElement>document.getElementById("Numero de Cedula")).value;
-    template.Telefono1 = (<HTMLInputElement>document.getElementById("Telefono 1")).value;
-    template.Telefono2 = (<HTMLInputElement>document.getElementById("Telefono 2")).value;
-    template.Correo_e = (<HTMLInputElement>document.getElementById("Correo electronico")).value;
-    template.Direccion1 = (<HTMLInputElement>document.getElementById("Direccion 1")).value;
-    template.Direccion2 = (<HTMLInputElement>document.getElementById("Direccion 2")).value;
-    template.Usuario = (<HTMLInputElement>document.getElementById("Usuario")).value;
+    const answer = {
+      'Nombre':(<HTMLInputElement>document.getElementById("Nombre")).value,
+      'Numero_Cedula': (<HTMLInputElement>document.getElementById("Numero de Cedula")).value,
+      'Telefono1': (<HTMLInputElement>document.getElementById("Numero de Cedula")).value,
+      'Telefono2': (<HTMLInputElement>document.getElementById("Telefono 2")).value,
+      'Correo_e':(<HTMLInputElement>document.getElementById("Correo electronico")).value,
+      'Direccion1': (<HTMLInputElement>document.getElementById("Direccion 1")).value,
+      'Direccion2': (<HTMLInputElement>document.getElementById("Direccion 2")).value,
+      'Usuario': (<HTMLInputElement>document.getElementById("Usuario")).value
+    };
+
     console.log(this.respuesta);
-    console.log(template);
-    let res = await this.http.post("https://localhost:7143/Clientes", template)
+    console.log(answer);
+    let res = await this.http.post("https://localhost:7143/Clientes/Clientes/post", JSON.stringify(answer), this.httpOptions)
     res.subscribe(result => {
       this.respuesta = result;
       console.log(this.respuesta);
