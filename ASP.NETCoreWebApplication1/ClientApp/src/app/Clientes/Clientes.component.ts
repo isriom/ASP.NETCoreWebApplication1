@@ -11,7 +11,6 @@ export class ClientesComponent {
   token = sessionStorage.getItem("tokenKey");
   respuesta = {};
   http: HttpClient;
-  router: Router | undefined;
   baseurl: string;
   httpOptions = {
     headers: new HttpHeaders({

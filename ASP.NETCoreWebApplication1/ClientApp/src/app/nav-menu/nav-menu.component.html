@@ -1,4 +1,4 @@
-<header>
+<header xmlns="http://www.w3.org/1999/html">
   <nav
     class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
   >
@@ -18,7 +18,7 @@
       <div *ngIf="token==='True'" class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
            [ngClass]="{ show: isExpanded }"
       >
-        <div *ngIf="rol=== 'trabajador';else elseBlock ">
+        <div *ngIf="rol=== 'Trabajador';else elseBlock ">
           <ul class="navbar-nav flex-grow">
             <li
               class="nav-item"
@@ -44,18 +44,11 @@
               >
             </li>
             <li class="nav-item" [routerLinkActive]="['link-active']">
-              <a class="nav-link text-dark" [routerLink]="['/RCitas']"
-              >Registro_Citas</a
-              >
-            </li>
-            <li class="nav-item" [routerLinkActive]="['link-active']">
               <a class="nav-link text-dark" [routerLink]="['/CFactura']"
               >Consulta_Facturas</a>
             </li>
-            <li class="nav-item" [routerLinkActive]="['link-active']">
-              <a class="nav-link text-dark" [routerLink]="['/GClientes']"
-              >Registro_Clientes</a
-              >
+            <li class="nav-item" >
+              <button class="text-dark" (click)="logout()">LogOut</button>
             </li>
           </ul>
         </div>
@@ -100,10 +93,14 @@
               >Registro_Clientes</a
               >
             </li>
+            <li class="nav-item" >
+              <button class="text-dark" (click)="logout()">LogOut</button>
+            </li>
           </ul>
 
         </ng-template>
       </div>
+
     </div>
   </nav>
 </header>

@@ -11,8 +11,8 @@
 </ng-template>
 <ng-template #elseBlock>
     <p class="text-decoration-underline" font-size="16">Usuario</p>
-    <p id="NAME" class="" font-size="16">{{user}}</p>
+    <p id="NAME" class="text-dark" font-size="16" [innerText]="user">{{user}}</p>
   <div id="Buttons-LLog-out">
-    <button id="Log-Out" (click)="Log_out()" class="form-floating">SIGN OUT</button>
+    <button id="Log-Out" (click)="logout()" class="form-floating">SIGN OUT</button>
   </div>
 </ng-template>

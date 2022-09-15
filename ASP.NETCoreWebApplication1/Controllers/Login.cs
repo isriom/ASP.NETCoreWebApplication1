@@ -50,7 +50,8 @@ public class loginController : Controller
             Console.Out.Write(System.Text.Json.JsonSerializer.Serialize(
                 HttpContext.Request.Cookies.ToString()));
             return Content(System.Text.Json.JsonSerializer.Serialize(
-                HttpContext.Request.Cookies));
+                claims[1].Value)
+            );
         }
 
         return NotFound(data);
@@ -62,12 +63,13 @@ public class loginController : Controller
         return true;
     }
 
-    [Authorize]
-    [HttpPut]
+    [AllowAnonymous]
+    [HttpPost]
     [Route("/logout")]
     public async Task<ActionResult> logout(Data.loginUser data)
     {
         await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        Console.Out.Write("Log out");
         return Ok(data);
     }
 }

@@ -10,8 +10,8 @@ import {Cookies, getCookie} from "typescript-cookie";
 
 
 export class HomeComponent implements OnInit {
-  token= sessionStorage.getItem("Token");
-  user = sessionStorage.getItem("Usuario")
+  token = sessionStorage.getItem("Token");
+  user = sessionStorage.getItem("Nombre")
   headers = {};
   respuesta = {};
   http: HttpClient;
@@ -20,18 +20,16 @@ export class HomeComponent implements OnInit {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'withCredentials':'true'
-})
+      'withCredentials': 'true'
+    })
   };
+
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.http = http;
     this.baseurl = baseUrl;
     this.Obtener_plantilla();
-    if (this.token===undefined){
-      this.token="null";
-    }
-    if (this.user!==null) {
-      (<HTMLParagraphElement>document.getElementById("NAME")).textContent = this.user.toString();
+    if (this.token === undefined) {
+      this.token = "null";
     }
     console.log(this.token)
     console.log(this.user)
@@ -39,7 +37,7 @@ export class HomeComponent implements OnInit {
 
   async Obtener_plantilla() {
 
-    var res = await this.http.get<string>("https://localhost:7143/login/plantilla",this.httpOptions).subscribe(result => {
+    var res = await this.http.get<string>("https://localhost:7143/login/plantilla", this.httpOptions).subscribe(result => {
       this.respuesta = result;
       console.log("login plantilla");
       console.log(this.respuesta);
@@ -55,35 +53,32 @@ export class HomeComponent implements OnInit {
       'Contraseña': (<HTMLInputElement>document.getElementById("Contraseña")).value,
     };
     console.log(answer);
-    const res = this.http.put<string>("https://localhost:7143/login/Singin", answer, {headers:this.httpOptions.headers, withCredentials:true});
+    const res = this.http.put<string>("https://localhost:7143/login/Singin", answer, {
+      headers: this.httpOptions.headers,
+      withCredentials: true
+    });
     res.subscribe(result => {
       console.log(answer);
 
       this.respuesta = result;
       sessionStorage.setItem("Nombre", <string>answer.Usuario);
-      localStorage.setItem("Nombre",<string>answer.Usuario);
-      Cookies.set("nombre",answer.Usuario)
-      Cookies.set("Token","True")
       sessionStorage.setItem("Token", "True");
-      this.user = sessionStorage.getItem("Nombre")
-      // window.location.reload()
+      this.user = answer.Usuario
+      sessionStorage.setItem("Rol",result)
+      window.location.reload()
       console.log(this.respuesta);
 
     }, error => console.error(error));
   }
 
-  async Log_out() {
-    const res = this.http.post<string>("https://localhost:7143/logout", {
-      "Usuario": sessionStorage.getItem("Usuario"),
-      "Contraseña": "0000"
-    }, this.httpOptions);
+
+
+  async logout(){
+    let res = await this.http.post("https://localhost:7143/logout", JSON.stringify({}), this.httpOptions)
     res.subscribe(result => {
-      console.log(res);
-
-      this.respuesta = result;
-      document.cookie = "";
-      console.log(this.respuesta);
-
+      console.log(result);
+      sessionStorage.clear();
+      window.location.reload()
     }, error => console.error(error));
   }
 
