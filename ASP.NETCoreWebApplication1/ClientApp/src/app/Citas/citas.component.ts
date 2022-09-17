@@ -47,14 +47,17 @@ export class CitasComponent implements OnInit {
 
   async Add_Button() {
     const answer = {
-      'cliente': (<HTMLInputElement>document.getElementById("Cliente")).value,
-      'placa': (<HTMLInputElement>document.getElementById("placa")).value,
-      "sucursal": (<HTMLInputElement>document.getElementById("sucursal")).value,
-      "servicio": (<HTMLInputElement>document.getElementById("servicio")).value
+      'Cliente': (<HTMLInputElement>document.getElementById("Cliente")).value,
+      'Placa_del_Vehiculo': (<HTMLInputElement>document.getElementById("Placa_del_Vehiculo")).value,
+      "Sucursal": (<HTMLInputElement>document.getElementById("Sucursal")).value,
+      "Servicio_solicitado": (<HTMLInputElement>document.getElementById("Servicio_solicitado")).value
     };
     console.log(this.respuesta);
     console.log(answer);
-    const res = this.http.post<string>("https://localhost:7143/Citas/post", JSON.stringify(answer), this.httpOptions);
+    const res = this.http.post<string>("https://localhost:7143/Citas/post", JSON.stringify(answer), {
+      headers: this.httpOptions.headers,
+      withCredentials: true,
+    });
     res.subscribe(result => {
       console.log(answer);
 

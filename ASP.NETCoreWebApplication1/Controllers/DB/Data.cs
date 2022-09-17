@@ -12,10 +12,12 @@ public class Data
             Servicio_solicitado = "";
         }
 
-        public string? Cliente { get; set; }
+        public string Cliente { get; set; }
         public int? Placa_del_Vehiculo { get; set; }
         public string? Sucursal { get; set; }
         public string? Servicio_solicitado { get; set; }
+
+        private string? Mecanico { get; set; }
     }
 
     public class G_trabajadores

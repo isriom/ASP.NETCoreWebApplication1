@@ -50,7 +50,7 @@ export class CFacturasComponent implements OnInit {
 
 
   async Consult_Button() {
-    this.pdf=""
+    this.pdf = ""
     const answer = {
       'cliente': (<HTMLInputElement>document.getElementById("Cliente")).value,
       'n_factura': (<HTMLInputElement>document.getElementById("Numero de Placa")).value
@@ -58,7 +58,10 @@ export class CFacturasComponent implements OnInit {
 
     console.log(this.respuesta);
     console.log(answer);
-    let res = await this.http.post("https://localhost:7143/CFacturas/post", JSON.stringify(answer), this.httpOptions)
+    let res = await this.http.post("https://localhost:7143/CFacturas/post", JSON.stringify(answer), {
+      headers: this.httpOptions.headers,
+      withCredentials: true,
+    })
     res.subscribe(result => {
       this.respuesta = result;
       console.log(this.respuesta);
@@ -69,7 +72,7 @@ export class CFacturasComponent implements OnInit {
   }
 
   async Delete_Button() {
-  this.pdf="favicon.ico"
+    this.pdf = "favicon.ico"
   }
 
   ngOnInit(): void {

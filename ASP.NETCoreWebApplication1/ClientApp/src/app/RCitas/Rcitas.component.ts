@@ -50,7 +50,10 @@ export class RCitasComponent {
 
     console.log(this.respuesta);
     console.log(answer);
-    let res = await this.http.post("https://localhost:7143/RCitas/post", JSON.stringify(answer), this.httpOptions)
+    let res = await this.http.post("https://localhost:7143/RCitas/post", JSON.stringify(answer), {
+      headers: this.httpOptions.headers,
+      withCredentials: true,
+    })
     res.subscribe(result => {
       this.respuesta = result;
       console.log(this.respuesta);
