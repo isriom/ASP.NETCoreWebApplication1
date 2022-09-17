@@ -1,10 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Title} from "@angular/platform-browser";
-import {waitForAsync} from "@angular/core/testing";
-import {HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from '@angular/router';
-import {Template} from "@angular/compiler/src/render3/r3_ast";
 
 @Component({
   selector: 'app-citas',
@@ -21,7 +17,7 @@ export class CitasComponent implements OnInit {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'withCredentials':'true'
+      'withCredentials': 'true'
     })
   };
 
@@ -32,7 +28,10 @@ export class CitasComponent implements OnInit {
   }
 
   async Obtener_Cita() {
-    var res = await this.http.get<string>("https://localhost:7143/Citas/plantilla",{headers:this.httpOptions.headers, withCredentials:true}).subscribe(result => {
+    var res = await this.http.get<string>("https://localhost:7143/Citas/plantilla", {
+      headers: this.httpOptions.headers,
+      withCredentials: true
+    }).subscribe(result => {
       this.respuesta = result;
       console.log(this.respuesta);
 

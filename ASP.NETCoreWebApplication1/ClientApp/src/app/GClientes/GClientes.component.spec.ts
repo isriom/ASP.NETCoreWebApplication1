@@ -1,5 +1,4 @@
-﻿
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+﻿import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {GClientesComponent} from "./GClientes.component";
 
@@ -9,7 +8,7 @@ describe('GClientesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GClientesComponent ]
+      declarations: [GClientesComponent]
     })
       .compileComponents();
   });

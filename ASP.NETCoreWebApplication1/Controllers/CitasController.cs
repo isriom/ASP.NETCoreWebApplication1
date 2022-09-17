@@ -1,25 +1,26 @@
-﻿using ASP.NETCoreWebApplication1.Controllers.DB;
+﻿using System.Text.Json;
+using ASP.NETCoreWebApplication1.Controllers.DB;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ASP.NETCoreWebApplication1.Controllers;
+
 [ApiController]
 [Authorize]
-
 public class CitasController : Controller
 {
     private static CitasController? _instance;
-    Data.cita prueba;
-    private List<Data.cita> Citas = new List<Data.cita>();
+    private List<Data.cita> Citas = new();
+    private Data.cita prueba;
 
     public CitasController()
     {
         prueba = new Data.cita();
         // User.IsInRole("Administrators");
-        this.prueba.Cliente = "Cliente de prueba";
-        this.prueba.Placa_del_Vehiculo = 1115486;
-        this.prueba.Sucursal = "Sucursal de prueba";
-        this.prueba.Servicio_solicitado = "Servicio de prueba";
+        prueba.Cliente = "Cliente de prueba";
+        prueba.Placa_del_Vehiculo = 1115486;
+        prueba.Sucursal = "Sucursal de prueba";
+        prueba.Servicio_solicitado = "Servicio de prueba";
     }
 
 
@@ -27,7 +28,7 @@ public class CitasController : Controller
     [Route("[controller]/{data}")]
     public ActionResult Register(string? data)
     {
-        string jsonstring = System.Text.Json.JsonSerializer.Serialize<Data.cita>(prueba);
+        var jsonstring = JsonSerializer.Serialize(prueba);
         return Content(jsonstring);
     }
 
@@ -35,7 +36,7 @@ public class CitasController : Controller
     [Route("[controller]/{id:int}")]
     public ActionResult Consult(int? id)
     {
-        string jsonstring = System.Text.Json.JsonSerializer.Serialize<Data.cita>(prueba);
+        var jsonstring = JsonSerializer.Serialize(prueba);
         return Content(jsonstring);
     }
 
@@ -46,13 +47,13 @@ public class CitasController : Controller
     {
         prueba = new Data.cita();
         User.IsInRole("Administrators");
-        this.prueba.Cliente = "Cliente de prueba";
-        this.prueba.Placa_del_Vehiculo = 1115486;
-        this.prueba.Sucursal = "Sucursal de prueba";
-        this.prueba.Servicio_solicitado = "Servicio de prueba";
-        
+        prueba.Cliente = "Cliente de prueba";
+        prueba.Placa_del_Vehiculo = 1115486;
+        prueba.Sucursal = "Sucursal de prueba";
+        prueba.Servicio_solicitado = "Servicio de prueba";
 
-        string jsonstring = System.Text.Json.JsonSerializer.Serialize<Data.cita>(prueba);
+
+        var jsonstring = JsonSerializer.Serialize(prueba);
 
         return Content(jsonstring);
     }
@@ -62,8 +63,8 @@ public class CitasController : Controller
     public ActionResult Insert(Data.cita cita)
     {
         Console.Out.Write("Prueba");
-        Console.Out.Write(cita+"\n");
-        string jsonstring = System.Text.Json.JsonSerializer.Serialize<Data.cita>(cita);
+        Console.Out.Write(cita + "\n");
+        var jsonstring = JsonSerializer.Serialize(cita);
         return CreatedAtAction(nameof(Insert), cita);
     }
 }

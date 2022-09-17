@@ -1,4 +1,4 @@
-﻿.element-input{
+﻿.element-input {
   width: 100%;
 }
 
@@ -21,17 +21,19 @@
   display: inline;
   margin-bottom: auto;
   font-weight: bold;
-  background-color:#42DBF7;
+  background-color: #42DBF7;
 }
 
-#Buttons {display: flex;
+#Buttons {
+  display: flex;
   margin: 5%;
   flex-direction: row;
   align-content: flex-end;
   justify-content: space-evenly;
 
 }
-#Buttons>button{
+
+#Buttons > button {
   width: 30%;
   font-size: larger;
 }
@@ -41,12 +43,14 @@ p {
   font-size: 20px;
   alignment: center;
 }
-button{
+
+button {
   border-radius: 4px;
   gap: 1px;
   background-color: #85FBE6;
   border-color: #046148;
   border-style: dot-dash;
 }
+
 div {
 }

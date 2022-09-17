@@ -1,21 +1,24 @@
 <div id="maindiv">
-  <div id="centraldiv" class="portfolio-item mx-auto">
+  <div class="portfolio-item mx-auto" id="centraldiv">
     <div id="title">Consulta de Facturas</div>
-    <div *ngFor="let element of respuesta|keyvalue" class="form-floating mb-3">
-      <p class="text-decoration-underline" font-size="16">{{element.key}}</p>
-      <input id="{{element.key}}" class="form-control-lg mx-auto element-input" placeholder="Espacio requerido"
+    <div class="form-floating mb-3">
+      <p class="text-decoration-underline" font-size="16">Cliente</p>
+      <input class="form-control-lg mx-auto element-input" id="Cliente" placeholder="Espacio requerido"
+             value="{{cliente}}">
+      <p class="text-decoration-underline" font-size="16">Numero de factura</p>
+      <input class="form-control-lg mx-auto element-input" id="NoFactura" placeholder="Espacio requerido"
              value="">
     </div>
     <div id="Buttons">
-      <button id="add" (click)="Consult_Button()" class="form-floating">Consult</button>
-      <button id="delete" (click)="Delete_Button()">Delete</button>
+      <button (click)="Consult_Button()" class="form-floating" id="add">Consult</button>
+      <button (click)="Delete_Button()" id="delete">Delete</button>
 
     </div>
 
 
   </div>
-  <div id="PDF" class="portfolio-item mx-sm-auto">
+  <div class="portfolio-item mx-sm-auto" id="PDF">
     <p font-size="16">Prueba</p>
-    <iframe src="favicon.png">Prueba</iframe>
+    <iframe [src]="this.pdf|safe">Prueba</iframe>
   </div>
 </div>

@@ -1,7 +1,6 @@
 import {Component, Inject} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Router} from "@angular/router";
-import {HttpHeaders} from '@angular/common/http';
 
 @Component({
   selector: 'app-trabajadores',
@@ -17,7 +16,7 @@ export class trabajadoresComponent {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'withCredentials':'true'
+      'withCredentials': 'true'
     })
   };
   elseBlock: any;
@@ -30,7 +29,10 @@ export class trabajadoresComponent {
   }
 
   async Obtener_trabajadores() {
-    var res = await this.http.get<string>("https://localhost:7143/trabajadores/plantilla",{headers:this.httpOptions.headers, withCredentials:true}).subscribe(result => {
+    var res = await this.http.get<string>("https://localhost:7143/trabajadores/plantilla", {
+      headers: this.httpOptions.headers,
+      withCredentials: true
+    }).subscribe(result => {
       this.respuesta = result;
       console.log(this.respuesta);
 
@@ -45,7 +47,7 @@ export class trabajadoresComponent {
       Numero_Cedula: (<HTMLInputElement>document.getElementById("Numero de Cedula")).value,
       Fecha_ingreso: (<HTMLInputElement>document.getElementById("Fecha de ingreso")).value,
       Fecha_nacimiento: (<HTMLInputElement>document.getElementById("Fecha de nacimiento")).value,
-      Edad:(<HTMLInputElement>document.getElementById("Edad")).value,
+      Edad: (<HTMLInputElement>document.getElementById("Edad")).value,
       Password: (<HTMLInputElement>document.getElementById("Password")).value,
       Rol: (<HTMLInputElement>document.getElementById("Rol que desempeña")).value
     };
