@@ -1,0 +1,6 @@
+﻿<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Pagina Tarea Corta" type="DotNetMsBuildPublish" factoryName="Publish to IIS">
+    <riderPublish configuration="Debug" platform="Any CPU" publish_profile="Pagina Tarea Corta.pubxml" uuid_high="-24453555755925087" uuid_low="-7503268528797451806" />
+    <method v="2" />
+  </configuration>
+</component>

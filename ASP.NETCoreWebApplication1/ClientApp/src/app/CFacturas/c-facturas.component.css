@@ -2,9 +2,17 @@
   width: 100%;
 }
 
+#maindiv{
+  display: flex;
+  flex-direction: row;
+  margin: 15px;
+}
+#PDF{
+  margin: 40px;
+}
 #centraldiv {
   width: 40%;
-  position: absolute;
+  position: relative;
   left: 3%;
   padding-left: 0;
   display: flex;

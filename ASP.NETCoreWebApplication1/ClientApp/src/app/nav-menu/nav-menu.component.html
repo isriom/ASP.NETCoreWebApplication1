@@ -1,9 +1,13 @@
 <header xmlns="http://www.w3.org/1999/html">
   <nav
-    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
+    class=" navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
   >
-    <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">MecaTEC </a>
+    <div class="navbar" style="margin: 0">
+      <a class="navbar-brand text-center" [routerLink]="['/']">MecaTEC </a>
+
+    </div>
+    <div class="container" style="margin: 0">
+      <a class="navbar-brand" href="favicon.ico">ICON</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -47,7 +51,7 @@
               <a class="nav-link text-dark" [routerLink]="['/CFactura']"
               >Consulta_Facturas</a>
             </li>
-            <li class="nav-item" >
+            <li class="nav-item">
               <button class="text-dark" (click)="logout()">LogOut</button>
             </li>
           </ul>
@@ -93,7 +97,7 @@
               >Registro_Clientes</a
               >
             </li>
-            <li class="nav-item" >
+            <li class="nav-item">
               <button class="text-dark" (click)="logout()">LogOut</button>
             </li>
           </ul>

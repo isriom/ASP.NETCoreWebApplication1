@@ -15,7 +15,7 @@ export class ClientesComponent {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'withCredentials':'true'
+      'withCredentials': 'true'
     })
   };
 
@@ -26,20 +26,24 @@ export class ClientesComponent {
   }
 
   async Obtener_Clientes() {
-    var res = await this.http.get<string>("https://localhost:7143/Clientes/plantilla",{headers:this.httpOptions.headers, withCredentials:true}).subscribe(result => {
+    var res = await this.http.get<string>("https://localhost:7143/Clientes/plantilla", {
+      headers: this.httpOptions.headers,
+      withCredentials: true
+    }).subscribe(result => {
       this.respuesta = result;
       console.log(this.respuesta);
 
     }, error => console.error(error));
     console.log(this.respuesta);
   }
+
   async Add_Button() {
     const answer = {
-      'Nombre':(<HTMLInputElement>document.getElementById("Nombre")).value,
+      'Nombre': (<HTMLInputElement>document.getElementById("Nombre")).value,
       'Numero_Cedula': (<HTMLInputElement>document.getElementById("Numero de Cedula")).value,
       'Telefono1': (<HTMLInputElement>document.getElementById("Numero de Cedula")).value,
       'Telefono2': (<HTMLInputElement>document.getElementById("Telefono 2")).value,
-      'Correo_e':(<HTMLInputElement>document.getElementById("Correo electronico")).value,
+      'Correo_e': (<HTMLInputElement>document.getElementById("Correo electronico")).value,
       'Direccion1': (<HTMLInputElement>document.getElementById("Direccion 1")).value,
       'Direccion2': (<HTMLInputElement>document.getElementById("Direccion 2")).value,
       'Usuario': (<HTMLInputElement>document.getElementById("Usuario")).value

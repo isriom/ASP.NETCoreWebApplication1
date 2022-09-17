@@ -50,12 +50,12 @@ export class HomeComponent implements OnInit {
   async Sig_In() {
     const answer = {
       'Usuario': (<HTMLInputElement>document.getElementById("Usuario")).value,
-      'Contraseña': (<HTMLInputElement>document.getElementById("Contraseña")).value,
+      'Contrasena': (<HTMLInputElement>document.getElementById("Contraseña")).value,
     };
     console.log(answer);
     const res = this.http.put<string>("https://localhost:7143/login/Singin", answer, {
       headers: this.httpOptions.headers,
-      withCredentials: true
+      withCredentials: true,
     });
     res.subscribe(result => {
       console.log(answer);
@@ -74,7 +74,11 @@ export class HomeComponent implements OnInit {
 
 
   async logout(){
-    let res = await this.http.post("https://localhost:7143/logout", JSON.stringify({}), this.httpOptions)
+    let res = await this.http.put("https://localhost:7143/logout", JSON.stringify({}), {
+      headers: this.httpOptions.headers,
+      withCredentials: true,
+      observe:"response"
+    })
     res.subscribe(result => {
       console.log(result);
       sessionStorage.clear();

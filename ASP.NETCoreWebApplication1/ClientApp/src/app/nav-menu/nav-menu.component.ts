@@ -15,7 +15,7 @@ export class NavMenuComponent {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'withCredentials':'true'
+      'withCredentials':'true',
     })
   };
 
@@ -32,11 +32,16 @@ export class NavMenuComponent {
   }
 
   async logout(){
-    let res = await this.http.post("https://localhost:7143/logout", JSON.stringify({}), this.httpOptions)
+    let res = await this.http.put("https://localhost:7143/logout", JSON.stringify({}), {
+      headers: this.httpOptions.headers,
+      withCredentials: true,
+      observe:"response"
+    })
     res.subscribe(result => {
       console.log(result);
       sessionStorage.clear();
       window.location.reload()
+      window.location.assign("");
     }, error => console.error(error));
   }
 }

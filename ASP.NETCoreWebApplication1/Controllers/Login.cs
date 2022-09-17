@@ -45,10 +45,12 @@ public class loginController : Controller
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                 new ClaimsPrincipal(claimIdentity), new AuthenticationProperties()
                 {
-                    IsPersistent = true,
+                    IsPersistent = false,
+                    RedirectUri = "", AllowRefresh = false
                 });
+
             Console.Out.Write(System.Text.Json.JsonSerializer.Serialize(
-                HttpContext.Request.Cookies.ToString()));
+                HttpContext.Request.Cookies));
             return Content(System.Text.Json.JsonSerializer.Serialize(
                 claims[1].Value)
             );
@@ -64,12 +66,18 @@ public class loginController : Controller
     }
 
     [AllowAnonymous]
-    [HttpPost]
+    [HttpPut]
     [Route("/logout")]
-    public async Task<ActionResult> logout(Data.loginUser data)
+    public async Task<ActionResult> logout(Data.loginUser? data)
     {
         await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        if (HttpContext.Request.Cookies.ContainsKey(".AspNetCore.Cookies"))
+        {
+            HttpContext.Response.Cookies.Delete(".AspNetCore.Cookies");
+        }
+
         Console.Out.Write("Log out");
-        return Ok(data);
+        return Content(System.Text.Json.JsonSerializer.Serialize(
+            this.template));
     }
 }
