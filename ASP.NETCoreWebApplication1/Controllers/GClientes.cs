@@ -1,30 +1,31 @@
-﻿using ASP.NETCoreWebApplication1.Controllers.DB;
+﻿using System.Text.Json;
+using ASP.NETCoreWebApplication1.Controllers.DB;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ASP.NETCoreWebApplication1.Controllers;
+
 [ApiController]
 [Authorize]
 public class GClientesController : Controller
 {
     private static GClientesController? _instance;
-    Data.G_ClientesVC ejemplo;
-    private List<Data.G_ClientesVC> ClientesVC = new List<Data.G_ClientesVC>();
+    private List<Data.G_ClientesVC> ClientesVC = new();
+    private Data.G_ClientesVC ejemplo;
 
     public GClientesController()
     {
         ejemplo = new Data.G_ClientesVC();
         // User.IsInRole("Administrators");
-        this.ejemplo.Nombre_Completo = "Armando";
-        this.ejemplo.Correo_electronico = "vcevvbceo@bbgx.com";
-        this.ejemplo.Cedula = 321547841;
-        this.ejemplo.Direccion1 = "chbljdblkxnl";
-        this.ejemplo.Direccion2 = "xasbkjc vjbd";
-        this.ejemplo.Telefono_1 = 87452145;
-        this.ejemplo.Telefono_2 = 25548782;
-        this.ejemplo.Usuario = "armadillo";
-        this.ejemplo.Password = "gtndobc852";
-
+        ejemplo.Nombre_Completo = "Armando";
+        ejemplo.Correo_electronico = "vcevvbceo@bbgx.com";
+        ejemplo.Cedula = 321547841;
+        ejemplo.Direccion1 = "chbljdblkxnl";
+        ejemplo.Direccion2 = "xasbkjc vjbd";
+        ejemplo.Telefono_1 = 87452145;
+        ejemplo.Telefono_2 = 25548782;
+        ejemplo.Usuario = "armadillo";
+        ejemplo.Password = "gtndobc852";
     }
 
 
@@ -32,7 +33,7 @@ public class GClientesController : Controller
     [Route("[controller]/{data}")]
     public ActionResult Register(string? data)
     {
-        string jsonstring = System.Text.Json.JsonSerializer.Serialize<Data.G_ClientesVC>(ejemplo);
+        var jsonstring = JsonSerializer.Serialize(ejemplo);
         return Content(jsonstring);
     }
 
@@ -40,7 +41,7 @@ public class GClientesController : Controller
     [Route("[controller]/{id:int}")]
     public ActionResult Consult(int? id)
     {
-        string jsonstring = System.Text.Json.JsonSerializer.Serialize<Data.G_ClientesVC>(ejemplo);
+        var jsonstring = JsonSerializer.Serialize(ejemplo);
         return Content(jsonstring);
     }
 
@@ -51,18 +52,18 @@ public class GClientesController : Controller
     {
         ejemplo = new Data.G_ClientesVC();
         User.IsInRole("Administrators");
-        this.ejemplo.Nombre_Completo = "Armando";
-        this.ejemplo.Correo_electronico = "vcevvbceo@bbgx.com";
-        this.ejemplo.Cedula = 321547841;
-        this.ejemplo.Direccion1 = "chbljdblkxnl";
-        this.ejemplo.Direccion2 = "xasbkjc vjbd";
-        this.ejemplo.Telefono_1 = 87452145;
-        this.ejemplo.Telefono_2 = 25548782;
-        this.ejemplo.Usuario = "armadillo";
-        this.ejemplo.Password = "gtndobc852";
-        
+        ejemplo.Nombre_Completo = "Armando";
+        ejemplo.Correo_electronico = "vcevvbceo@bbgx.com";
+        ejemplo.Cedula = 321547841;
+        ejemplo.Direccion1 = "chbljdblkxnl";
+        ejemplo.Direccion2 = "xasbkjc vjbd";
+        ejemplo.Telefono_1 = 87452145;
+        ejemplo.Telefono_2 = 25548782;
+        ejemplo.Usuario = "armadillo";
+        ejemplo.Password = "gtndobc852";
 
-        string jsonstring = System.Text.Json.JsonSerializer.Serialize<Data.G_ClientesVC>(ejemplo);
+
+        var jsonstring = JsonSerializer.Serialize(ejemplo);
 
         return Content(jsonstring);
     }
@@ -73,9 +74,9 @@ public class GClientesController : Controller
     {
         Console.Out.Write("Prueba");
         Console.Out.Write(data);
-        string jsonstring = System.Text.Json.JsonSerializer.Serialize<Data.G_ClientesVC>(ejemplo);
-        System.Console.Out.Write("jsonstring:\n");
-        System.Console.Out.Write(jsonstring);
+        var jsonstring = JsonSerializer.Serialize(ejemplo);
+        Console.Out.Write("jsonstring:\n");
+        Console.Out.Write(jsonstring);
         return CreatedAtAction(nameof(Insert), new Data.G_ClientesVC());
     }
 }

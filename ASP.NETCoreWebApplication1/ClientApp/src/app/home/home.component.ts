@@ -1,7 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
-import {Cookies, getCookie} from "typescript-cookie";
 
 @Component({
   selector: 'app-home',
@@ -64,7 +63,7 @@ export class HomeComponent implements OnInit {
       sessionStorage.setItem("Nombre", <string>answer.Usuario);
       sessionStorage.setItem("Token", "True");
       this.user = answer.Usuario
-      sessionStorage.setItem("Rol",result)
+      sessionStorage.setItem("Rol", result)
       window.location.reload()
       console.log(this.respuesta);
 
@@ -72,12 +71,11 @@ export class HomeComponent implements OnInit {
   }
 
 
-
-  async logout(){
+  async logout() {
     let res = await this.http.put("https://localhost:7143/logout", JSON.stringify({}), {
       headers: this.httpOptions.headers,
       withCredentials: true,
-      observe:"response"
+      observe: "response"
     })
     res.subscribe(result => {
       console.log(result);

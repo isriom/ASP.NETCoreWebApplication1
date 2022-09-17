@@ -16,7 +16,7 @@ export class GClientesComponent {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'withCredentials':'true'
+      'withCredentials': 'true'
     })
   };
 
@@ -27,7 +27,10 @@ export class GClientesComponent {
   }
 
   async Obtener_Clientes() {
-    var res = await this.http.get<string>("https://localhost:7143/GClientes/plantilla",{headers:this.httpOptions.headers, withCredentials:true}).subscribe(result => {
+    var res = await this.http.get<string>("https://localhost:7143/GClientes/plantilla", {
+      headers: this.httpOptions.headers,
+      withCredentials: true
+    }).subscribe(result => {
       this.respuesta = result;
       console.log(this.respuesta);
 
@@ -38,7 +41,7 @@ export class GClientesComponent {
   async Add_Button() {
     const answer = {
       'Nombre': (<HTMLInputElement>document.getElementById("Nombre")).value,
-      'Numero_Cedula':(<HTMLInputElement>document.getElementById("Numero de Cedula")).value,
+      'Numero_Cedula': (<HTMLInputElement>document.getElementById("Numero de Cedula")).value,
       'Telefono1': (<HTMLInputElement>document.getElementById("Telefono 1")).value,
       'Telefono2': (<HTMLInputElement>document.getElementById("Telefono 2")).value,
       'Correo_e': (<HTMLInputElement>document.getElementById("Correo electronico")).value,

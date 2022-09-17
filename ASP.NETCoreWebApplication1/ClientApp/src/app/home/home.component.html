@@ -2,20 +2,20 @@
 <ng-template #thenBlock>
   <div class="form-floating mb-3 align-content-center">
     <p class="text-decoration-underline" font-size="15">Usuario</p>
-    <input id="Usuario"  class="form-control-lg mx-auto element-input" placeholder="Espacio requerido"
+    <input class="form-control-lg mx-auto element-input" id="Usuario" placeholder="Espacio requerido"
            value="">
     <p class="text-decoration-underline" font-size="15">Contraseña</p>
-    <input id="Contraseña" class="form-control-lg mx-auto element-input" placeholder="Espacio requerido"
+    <input class="form-control-lg mx-auto element-input" id="Contraseña" placeholder="Espacio requerido"
            value="">
   </div>
   <div id="Buttons-log-in">
-    <button id="Sig_in" (click)="Sig_In()" class="form-floating">SIGN IN</button>
+    <button (click)="Sig_In()" class="form-floating" id="Sig_in">SIGN IN</button>
   </div>
 </ng-template>
 <ng-template #elseBlock>
-    <p class="text-decoration-underline" font-size="16">Usuario</p>
-    <p id="NAME" class="text-dark" font-size="16" [innerText]="user">{{user}}</p>
+  <p class="text-decoration-underline" font-size="16">Usuario</p>
+  <p [innerText]="user" class="text-dark" font-size="16" id="NAME">{{user}}</p>
   <div id="Buttons-LLog-out">
-    <button id="Log-Out" (click)="logout()" class="form-floating">SIGN OUT</button>
+    <button (click)="logout()" class="form-floating" id="Log-Out">SIGN OUT</button>
   </div>
 </ng-template>

@@ -1,24 +1,24 @@
-﻿
+﻿using System.Text.Json;
 using ASP.NETCoreWebApplication1.Controllers.DB;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ASP.NETCoreWebApplication1.Controllers;
+
 [ApiController]
 [Authorize]
 public class CFacturasController : Controller
 {
     private static CFacturasController? _instance;
-    Data.Consulta_factura facturap;
-    private List<Data.Consulta_factura> Factura = new List<Data.Consulta_factura>();
+    private List<Data.Consulta_factura> Factura = new();
+    private Data.Consulta_factura facturap;
 
     public CFacturasController()
     {
         facturap = new Data.Consulta_factura();
         // User.IsInRole("Administrators");
-        this.facturap.Cliente = "Felix";
-        this.facturap.Numero_de_Factura = 11;
-        
+        facturap.Cliente = "Felix";
+        facturap.Numero_de_Factura = 11;
     }
 
 
@@ -26,7 +26,7 @@ public class CFacturasController : Controller
     [Route("[controller]/{data}")]
     public ActionResult Register(string? data)
     {
-        string jsonstring = System.Text.Json.JsonSerializer.Serialize<Data.Consulta_factura>(facturap);
+        var jsonstring = JsonSerializer.Serialize(facturap);
         return Content(jsonstring);
     }
 
@@ -34,7 +34,7 @@ public class CFacturasController : Controller
     [Route("[controller]/{id:int}")]
     public ActionResult Consult(int? id)
     {
-        string jsonstring = System.Text.Json.JsonSerializer.Serialize<Data.Consulta_factura>(facturap);
+        var jsonstring = JsonSerializer.Serialize(facturap);
         return Content(jsonstring);
     }
 
@@ -45,12 +45,11 @@ public class CFacturasController : Controller
     {
         facturap = new Data.Consulta_factura();
         // User.IsInRole("Administrators");
-        this.facturap.Cliente = "Felix";
-        this.facturap.Numero_de_Factura = 9;
-        
-        
+        facturap.Cliente = "Felix";
+        facturap.Numero_de_Factura = 9;
 
-        string jsonstring = System.Text.Json.JsonSerializer.Serialize<Data.Consulta_factura>(facturap);
+
+        var jsonstring = JsonSerializer.Serialize(facturap);
 
         return Content(jsonstring);
     }
@@ -61,9 +60,9 @@ public class CFacturasController : Controller
     {
         Console.Out.Write("Prueba");
         Console.Out.Write(data);
-        string jsonstring = System.Text.Json.JsonSerializer.Serialize<Data.Consulta_factura>(facturap);
-        System.Console.Out.Write("jsonstring:\n");
-        System.Console.Out.Write(jsonstring);
+        var jsonstring = JsonSerializer.Serialize(facturap);
+        Console.Out.Write("jsonstring:\n");
+        Console.Out.Write(jsonstring);
         return CreatedAtAction(nameof(Insert), new Data.Consulta_factura());
     }
 }

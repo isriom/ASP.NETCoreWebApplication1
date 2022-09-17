@@ -1,10 +1,9 @@
-﻿using System.Net;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using System.Text.Json;
 using ASP.NETCoreWebApplication1.Controllers.DB;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ASP.NETCoreWebApplication1.Controllers;
@@ -12,16 +11,16 @@ namespace ASP.NETCoreWebApplication1.Controllers;
 [ApiController]
 public class loginController : Controller
 {
-    public Data.loginUser template = new Data.loginUser();
+    public Data.loginUser template = new();
 
     [AllowAnonymous]
     [HttpGet]
     [Route("login/plantilla")]
     public ActionResult plantilla(string? data)
     {
-        this.template.Contraseña = null;
-        this.template.Usuario = null;
-        string jsonstring = System.Text.Json.JsonSerializer.Serialize<Data.loginUser>(template);
+        template.Contraseña = null;
+        template.Usuario = null;
+        var jsonstring = JsonSerializer.Serialize(template);
         return Content(jsonstring);
     }
 
@@ -38,20 +37,20 @@ public class loginController : Controller
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, data.Usuario),
-                new Claim(ClaimTypes.Role, "Trabajador"),
+                new(ClaimTypes.Name, data.Usuario),
+                new(ClaimTypes.Role, "Trabajador")
             };
             var claimIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                new ClaimsPrincipal(claimIdentity), new AuthenticationProperties()
+                new ClaimsPrincipal(claimIdentity), new AuthenticationProperties
                 {
                     IsPersistent = false,
                     RedirectUri = "", AllowRefresh = false
                 });
 
-            Console.Out.Write(System.Text.Json.JsonSerializer.Serialize(
+            Console.Out.Write(JsonSerializer.Serialize(
                 HttpContext.Request.Cookies));
-            return Content(System.Text.Json.JsonSerializer.Serialize(
+            return Content(JsonSerializer.Serialize(
                 claims[1].Value)
             );
         }
@@ -59,7 +58,7 @@ public class loginController : Controller
         return NotFound(data);
     }
 
-    private async Task<Boolean> AuthenticateUser(string id, string password)
+    private async Task<bool> AuthenticateUser(string id, string password)
     {
         //Implementar codigo para revisar base de datos
         return true;
@@ -72,12 +71,10 @@ public class loginController : Controller
     {
         await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         if (HttpContext.Request.Cookies.ContainsKey(".AspNetCore.Cookies"))
-        {
             HttpContext.Response.Cookies.Delete(".AspNetCore.Cookies");
-        }
 
         Console.Out.Write("Log out");
-        return Content(System.Text.Json.JsonSerializer.Serialize(
-            this.template));
+        return Content(JsonSerializer.Serialize(
+            template));
     }
 }

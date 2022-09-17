@@ -1,6 +1,5 @@
-import {Component, Inject} from '@angular/core';
+import {Component} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-nav-menu',
@@ -15,7 +14,7 @@ export class NavMenuComponent {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'withCredentials':'true',
+      'withCredentials': 'true',
     })
   };
 
@@ -31,11 +30,11 @@ export class NavMenuComponent {
     this.isExpanded = !this.isExpanded;
   }
 
-  async logout(){
+  async logout() {
     let res = await this.http.put("https://localhost:7143/logout", JSON.stringify({}), {
       headers: this.httpOptions.headers,
       withCredentials: true,
-      observe:"response"
+      observe: "response"
     })
     res.subscribe(result => {
       console.log(result);
