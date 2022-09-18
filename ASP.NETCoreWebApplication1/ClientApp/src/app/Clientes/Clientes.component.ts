@@ -1,5 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Popup} from "../Popup/Popup.component";
 
 @Component({
   selector: 'app-Clientes',
@@ -38,24 +39,28 @@ export class ClientesComponent {
 
   async Add_Button() {
     const answer = {
-      'Nombre': (<HTMLInputElement>document.getElementById("Nombre")).value,
-      'Numero_Cedula': (<HTMLInputElement>document.getElementById("Numero de Cedula")).value,
-      'Telefono1': (<HTMLInputElement>document.getElementById("Numero de Cedula")).value,
-      'Telefono2': (<HTMLInputElement>document.getElementById("Telefono 2")).value,
-      'Correo_e': (<HTMLInputElement>document.getElementById("Correo electronico")).value,
-      'Direccion1': (<HTMLInputElement>document.getElementById("Direccion 1")).value,
-      'Direccion2': (<HTMLInputElement>document.getElementById("Direccion 2")).value,
+      'Nombre_Completo': (<HTMLInputElement>document.getElementById("Nombre_Completo")).value,
+      'Cedula': (<HTMLInputElement>document.getElementById("Cedula")).value,
+      'Telefono_1': (<HTMLInputElement>document.getElementById("Telefono_1")).value,
+      'Telefono_2': (<HTMLInputElement>document.getElementById("Telefono_2")).value,
+      'Correo_electronico': (<HTMLInputElement>document.getElementById("Correo_electronico")).value,
+      'Direccion_1': (<HTMLInputElement>document.getElementById("Direccion_1")).value,
+      'Direccion_2': (<HTMLInputElement>document.getElementById("Direccion_2")).value,
       'Usuario': (<HTMLInputElement>document.getElementById("Usuario")).value
     };
 
     console.log(this.respuesta);
     console.log(answer);
-    let res = await this.http.post("https://localhost:7143/Clientes/Clientes/post", JSON.stringify(answer), {
+    let res = await this.http.post("https://localhost:7143/Clientes/post", JSON.stringify(answer), {
       headers: this.httpOptions.headers,
       withCredentials: true,
     })
     res.subscribe(result => {
       this.respuesta = result;
+      Popup.open("REGISTRO EXITOSO", "Se ha registrado la informacion. Revisar correo para acceder a su contraseña ", "Inicio", function () {
+      window.location.assign("");
+      });
+
       console.log(this.respuesta);
 
     }, error => console.error(error));

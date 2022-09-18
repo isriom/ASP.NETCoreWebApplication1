@@ -56,7 +56,7 @@ public class CFacturasController : Controller
 
     [HttpPost]
     [Route("[controller]/post")]
-    public ActionResult Insert(string data)
+    public ActionResult Insert(Data.Consulta_factura data)
     {
         Console.Out.Write("Prueba");
         Console.Out.Write(data);

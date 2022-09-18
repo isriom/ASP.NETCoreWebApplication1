@@ -12,6 +12,7 @@ import {trabajadoresComponent} from "./trabajadores/trabajadores.component";
 import {CFacturasComponent} from "./CFacturas/c-facturas.component";
 import {GClientesComponent} from "./GClientes/GClientes.component";
 import {RCitasComponent} from "./RCitas/Rcitas.component";
+import {Popup} from "./Popup/Popup.component";
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import {RCitasComponent} from "./RCitas/Rcitas.component";
     CFacturasComponent,
     GClientesComponent,
     RCitasComponent,
+    Popup,
     SafePipe,
   ],
   imports: [

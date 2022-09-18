@@ -70,7 +70,7 @@ public class GClientesController : Controller
 
     [HttpPost]
     [Route("[controller]/post")]
-    public ActionResult Insert(string data)
+    public ActionResult Insert(Data.G_ClientesVC data)
     {
         Console.Out.Write("Prueba");
         Console.Out.Write(data);

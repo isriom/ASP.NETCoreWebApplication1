@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using ASP.NETCoreWebApplication1.Controllers.DB;
+using ASP.NETCoreWebApplication1.Controllers.DB.Facturas;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -63,8 +64,10 @@ public class CitasController : Controller
     public ActionResult Insert(Data.cita cita)
     {
         Console.Out.Write("Prueba");
-        Console.Out.Write(cita + "\n");
         var jsonstring = JsonSerializer.Serialize(cita);
-        return CreatedAtAction(nameof(Insert), cita);
+        Console.Out.Write(jsonstring + "\n");
+        Console.Out.Write("Creando el pdf");
+        string numeroF = PDFHandler.FacturaCita(cita);
+        return CreatedAtAction(nameof(Insert), numeroF);
     }
 }

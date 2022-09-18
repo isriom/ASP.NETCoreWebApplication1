@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from '@angular/router';
+import {Popup} from "../Popup/Popup.component";
 
 @Component({
   selector: 'app-citas',
@@ -61,7 +62,9 @@ export class CitasComponent implements OnInit {
     res.subscribe(result => {
       console.log(answer);
 
-      this.respuesta = result;
+      this.Obtener_Cita();
+      Popup.open("CITA REGISTRADA", "Se ha registrado la cita bajo la factura #" + result, "Imprimir");
+
       console.log(this.respuesta);
 
     }, error => console.error(error));

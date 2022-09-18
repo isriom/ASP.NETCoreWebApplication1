@@ -60,7 +60,7 @@ public class RCitasController : Controller
 
     [HttpPost]
     [Route("[controller]/post")]
-    public ActionResult Insert(string data)
+    public ActionResult Insert(Data.cita data)
     {
         Console.Out.Write("Prueba");
         Console.Out.Write(data);
