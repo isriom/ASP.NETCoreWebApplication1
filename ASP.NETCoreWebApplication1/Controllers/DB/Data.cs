@@ -87,8 +87,8 @@ public class Data
             Nombre_Completo = "";
             Correo_electronico = "";
             Cedula = null;
-            Direccion1 = "";
-            Direccion2 = "";
+            Direccion_1 = "";
+            Direccion_2 = "";
             Telefono_1 = null;
             Telefono_2 = null;
             Usuario = "";
@@ -99,8 +99,8 @@ public class Data
 
         public int? Cedula { get; set; }
         public string? Correo_electronico { get; set; }
-        public string? Direccion1 { get; set; }
-        public string? Direccion2 { get; set; }
+        public string? Direccion_1 { get; set; }
+        public string? Direccion_2 { get; set; }
         public int? Telefono_1 { get; set; }
         public int? Telefono_2 { get; set; }
         public string? Usuario { get; set; }

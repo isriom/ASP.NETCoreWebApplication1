@@ -20,8 +20,8 @@ public class GClientesController : Controller
         ejemplo.Nombre_Completo = "Armando";
         ejemplo.Correo_electronico = "vcevvbceo@bbgx.com";
         ejemplo.Cedula = 321547841;
-        ejemplo.Direccion1 = "chbljdblkxnl";
-        ejemplo.Direccion2 = "xasbkjc vjbd";
+        ejemplo.Direccion_1 = "chbljdblkxnl";
+        ejemplo.Direccion_2 = "xasbkjc vjbd";
         ejemplo.Telefono_1 = 87452145;
         ejemplo.Telefono_2 = 25548782;
         ejemplo.Usuario = "armadillo";
@@ -55,8 +55,8 @@ public class GClientesController : Controller
         ejemplo.Nombre_Completo = "Armando";
         ejemplo.Correo_electronico = "vcevvbceo@bbgx.com";
         ejemplo.Cedula = 321547841;
-        ejemplo.Direccion1 = "chbljdblkxnl";
-        ejemplo.Direccion2 = "xasbkjc vjbd";
+        ejemplo.Direccion_1 = "chbljdblkxnl";
+        ejemplo.Direccion_2 = "xasbkjc vjbd";
         ejemplo.Telefono_1 = 87452145;
         ejemplo.Telefono_2 = 25548782;
         ejemplo.Usuario = "armadillo";

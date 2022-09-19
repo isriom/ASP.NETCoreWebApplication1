@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 
+DBController.load();
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
