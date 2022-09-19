@@ -7,6 +7,7 @@ namespace ASP.NETCoreWebApplication1.Controllers;
 
 [ApiController]
 [Authorize]
+[Authorize (Roles = "Trabajador")]
 public class ClientesController : Controller
 {
     private static ClientesController? _instance;
@@ -16,7 +17,7 @@ public class ClientesController : Controller
     public ClientesController()
     {
         ejemplo = new Data.G_clientes();
-        // User.IsInRole("Administrators");
+        
         ejemplo.Nombre_Completo = "Armando";
         ejemplo.Correo_electronico = "vcevvbceo@bbgx.com";
         ejemplo.Cedula = 321547841;

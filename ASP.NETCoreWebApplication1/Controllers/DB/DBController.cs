@@ -101,14 +101,29 @@ public class DBController
         }
     }
 
+    /**
+     * 
+     */
     public DBController.cita[] Citas { get; set; }
+    /**
+     * 
+     */
 
     public trabajador[] Trabajadores { get; set; }
+    /**
+     * 
+     */
 
     public cliente[] Clientes { get; set; }
+    /**
+     * 
+     */
 
     public Factura[] Facturas { get; set; }
-
+    
+    /**
+     * 
+     */
     public DBController(cita[] citas, trabajador[] trabajadores, cliente[] clientes, Factura[] facturas)
     {
         Citas = citas ?? throw new ArgumentNullException(nameof(citas));
@@ -117,7 +132,9 @@ public class DBController
         Facturas = facturas ?? throw new ArgumentNullException(nameof(facturas));
         DBController.DB = this;
     }
-
+    /**
+     * 
+     */
     public DBController()
     {
         Citas = new[] { new cita(new Data.cita(), 1), new cita(new Data.cita(), 2), new cita(new Data.cita(), 3) } ??
@@ -139,22 +156,25 @@ public class DBController
         } ?? throw new ArgumentNullException(nameof(DBController.Facturas));
     }
 
-
+    /**
+     *
+     * 
+     */
     public static string FoundUser(string name, string pass)
     {
         foreach (trabajador trabajador in DB.Trabajadores)
         {
             if (trabajador.Nombre == name && trabajador.Password == pass)
             {
-                return trabajador.Rol;
+                return "Trabajador";
             }
         }
 
         foreach (cliente cliente in DB.Clientes)
-        {
+        { 
             if (cliente.Usuario == name && cliente.Password == pass)
             {
-                return "Client";
+                return "Cliente";
             }
         }
 

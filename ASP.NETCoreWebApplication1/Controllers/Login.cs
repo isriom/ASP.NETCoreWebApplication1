@@ -46,7 +46,7 @@ public class loginController : Controller
             var claims = new List<Claim>
             {
                 new(ClaimTypes.Name, data.Usuario),
-                new(ClaimTypes.Role, "Trabajador")
+                new(ClaimTypes.Role, rol)
             };
             var claimIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
