@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using iText.Kernel.Pdf;
@@ -37,7 +36,7 @@ public class PDFHandler
         //Desglose de Servicios
         AddServices(layoutDocument, cita);
         layoutDocument.Close();
-        PDFHandler.CreateMetaData(cita,No.ToString());
+        PDFHandler.CreateMetaData(cita, No.ToString());
         return No.ToString();
     }
 
@@ -110,12 +109,12 @@ public class PDFHandler
     public static void CreateMetaData(Data.cita cita, string No)
     {
         var file = File.Create("./Facturas/Metadata/M" + No + ".json");
-        
+
         var data = JsonSerializer.Serialize(cita);
         byte[] bytes = new UTF8Encoding(true).GetBytes(data);
         Console.Write(bytes);
         Console.Write(data);
-        file.Write(bytes,0,bytes.Length);
+        file.Write(bytes, 0, bytes.Length);
         file.Close();
     }
 }

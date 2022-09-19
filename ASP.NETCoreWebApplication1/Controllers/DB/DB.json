@@ -20,6 +20,13 @@
       "Placa_del_Vehiculo": null,
       "Sucursal": "",
       "Servicio_solicitado": ""
+    },
+    {
+      "Number": 3967691,
+      "Cliente": "Isriom",
+      "Placa_del_Vehiculo": 123465,
+      "Sucursal": "SJ",
+      "Servicio_solicitado": "Limpieza de Dientes"
     }
   ],
   "Trabajadores": [
@@ -101,6 +108,10 @@
     {
       "Cliente": "",
       "Numero_de_Factura": null
+    },
+    {
+      "Cliente": "Isriom",
+      "Numero_de_Factura": 3967691
     }
   ]
 }

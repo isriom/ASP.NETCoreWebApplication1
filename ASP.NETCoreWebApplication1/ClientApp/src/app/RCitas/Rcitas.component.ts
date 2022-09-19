@@ -42,10 +42,10 @@ export class RCitasComponent {
 
   async Add_Button() {
     const answer = {
-      'cliente': (<HTMLInputElement>document.getElementById("Cliente")).value,
-      'placa': (<HTMLInputElement>document.getElementById("Placa")).value,
-      'sucursal': (<HTMLInputElement>document.getElementById("Sucursal")).value,
-      'servicio': (<HTMLInputElement>document.getElementById("Servicio")).value
+      'Cliente': (<HTMLInputElement>document.getElementById("Cliente")).value,
+      'Placa_del_Vehiculo': (<HTMLInputElement>document.getElementById("Placa_del_Vehiculo")).value,
+      "Sucursal": (<HTMLInputElement>document.getElementById("Sucursal")).value,
+      "Servicio_solicitado": (<HTMLInputElement>document.getElementById("Servicio_solicitado")).value
     };
 
     console.log(this.respuesta);

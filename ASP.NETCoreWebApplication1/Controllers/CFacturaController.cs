@@ -59,17 +59,16 @@ public class CFacturasController : Controller
         var file = "";
         if (User.IsInRole("Trabajador"))
         {
-            file = "./Facturas/F" + data.Numero_de_Factura.ToString()+".pdf";
+            file = "./Facturas/F" + data.Numero_de_Factura.ToString() + ".pdf";
             Console.Out.Write("Trabajador");
         }
         else
         {
             if (DBController.IsOwner(User.Identity.Name, data.Numero_de_Factura))
             {
-                file = "./Facturas/F" + data.Numero_de_Factura.ToString()+".pdf";
+                file = "./Facturas/F" + data.Numero_de_Factura.ToString() + ".pdf";
                 Console.Out.Write("Clientes");
                 Console.Out.Write(User.Identity.Name);
-
             }
         }
 

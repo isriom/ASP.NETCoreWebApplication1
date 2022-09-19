@@ -116,8 +116,14 @@ public class Data
             Numero_de_Factura = null;
         }
 
+        public Consulta_factura(string cliente, double No)
+        {
+            Cliente = cliente;
+            Numero_de_Factura = No;
+        }
+
         public string? Cliente { get; set; }
-        public int? Numero_de_Factura { get; set; }
+        public double? Numero_de_Factura { get; set; }
     }
 
     public class loginUser

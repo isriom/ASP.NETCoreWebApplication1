@@ -63,11 +63,9 @@ public class CitasController : Controller
     [Route("[controller]/post")]
     public ActionResult Insert(Data.cita cita)
     {
-        Console.Out.Write("Prueba");
-        var jsonstring = JsonSerializer.Serialize(cita);
-        Console.Out.Write(jsonstring + "\n");
         Console.Out.Write("Creando el pdf");
         string numeroF = PDFHandler.FacturaCita(cita);
+        DBController.RegistrarCitayFactura(cita, Convert.ToDouble(numeroF));
         return CreatedAtAction(nameof(Insert), numeroF);
     }
 }

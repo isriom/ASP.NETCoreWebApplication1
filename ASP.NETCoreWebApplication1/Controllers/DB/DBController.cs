@@ -104,36 +104,36 @@ public class DBController
     /**
      * 
      */
-    public DBController.cita[] Citas { get; set; }
+    public List<cita> Citas { get; set; }
 
     /**
      * 
      */
 
-    public trabajador[] Trabajadores { get; set; }
+    public List<trabajador> Trabajadores { get; set; }
 
     /**
      * 
      */
 
-    public cliente[] Clientes { get; set; }
+    public List<cliente> Clientes { get; set; }
 
     /**
      * 
      */
 
-    public Factura[] Facturas { get; set; }
+    public List<Factura> Facturas { get; set; }
 
     /**
      * 
      */
     public DBController(cita[] citas, trabajador[] trabajadores, cliente[] clientes, Factura[] facturas)
     {
-        Citas = citas ?? throw new ArgumentNullException(nameof(citas));
-        Trabajadores = trabajadores ?? throw new ArgumentNullException(nameof(trabajadores));
-        Clientes = clientes ?? throw new ArgumentNullException(nameof(clientes));
-        Facturas = facturas ?? throw new ArgumentNullException(nameof(facturas));
-        DBController.DB = this;
+        Citas = new List<cita>(citas ?? throw new ArgumentNullException(nameof(citas)));
+        Trabajadores = new List<trabajador>(trabajadores ?? throw new ArgumentNullException(nameof(trabajadores)));
+        Clientes = new List<cliente>(clientes ?? throw new ArgumentNullException(nameof(clientes)));
+        Facturas = new List<Factura>(facturas ?? throw new ArgumentNullException(nameof(facturas)));
+        DB = this;
     }
 
     /**
@@ -141,23 +141,24 @@ public class DBController
      */
     public DBController()
     {
-        Citas = new[] { new cita(new Data.cita(), 1), new cita(new Data.cita(), 2), new cita(new Data.cita(), 3) } ??
-                throw new ArgumentNullException(nameof(DBController.Citas));
+        Citas = new List<cita>(
+            new[] { new cita(new Data.cita(), 1), new cita(new Data.cita(), 2), new cita(new Data.cita(), 3) } ??
+            throw new ArgumentNullException(nameof(DBController.Citas)));
         Trabajadores =
-            new[]
+            new List<trabajador>(new[]
             {
                 new trabajador(new Data.G_trabajadores()), new trabajador(new Data.G_trabajadores()),
                 new trabajador(new Data.G_trabajadores())
-            } ?? throw new ArgumentNullException(nameof(DBController.Trabajadores));
-        Clientes = new[]
+            } ?? throw new ArgumentNullException(nameof(DBController.Trabajadores)));
+        Clientes = new List<cliente>(new[]
         {
             new cliente(new Data.G_clientes()), new cliente(new Data.G_clientes()), new cliente(new Data.G_clientes()),
-        } ?? throw new ArgumentNullException(nameof(DBController.Clientes));
-        Facturas = new[]
+        } ?? throw new ArgumentNullException(nameof(DBController.Clientes)));
+        Facturas = new List<Factura>(new[]
         {
             new Factura(new Data.Consulta_factura()), new Factura(new Data.Consulta_factura()),
             new Factura(new Data.Consulta_factura()),
-        } ?? throw new ArgumentNullException(nameof(DBController.Facturas));
+        } ?? throw new ArgumentNullException(nameof(DBController.Facturas)));
     }
 
     /**
@@ -188,11 +189,11 @@ public class DBController
         return "No Found";
     }
 
-    public static bool IsOwner(string name, int? Nfactura)
+    public static bool IsOwner(string name, double? Nfactura)
     {
         foreach (var factura in DB.Facturas)
         {
-            if (factura.Cliente == name && factura.Numero_de_Factura==Nfactura)
+            if (factura.Cliente == name && factura.Numero_de_Factura == Nfactura)
             {
                 Console.Out.Write(factura.Cliente);
                 return true;
@@ -200,6 +201,24 @@ public class DBController
         }
 
         return false;
+    }
+
+
+    public static void RegistrarCitayFactura(Data.cita cita, double NO)
+    {
+        AddCita(cita, NO);
+        AddFactura(cita, NO);
+    }
+
+    public static void AddCita(Data.cita cita, double No)
+    {
+        DB.Citas.Add(new cita(cita, No));
+    }
+
+    public static void AddFactura(Data.cita cita, double No)
+    {
+        DB.Facturas.Add(new Factura(new Data.Consulta_factura(cita.Cliente, No)));
+        save();
     }
 
     public static void load()
@@ -217,7 +236,6 @@ public class DBController
 
         var data = JsonSerializer.Serialize(DB);
         byte[] bytes = new UTF8Encoding(true).GetBytes(data);
-        Console.Write(bytes);
         Console.Write(data);
         file.Write(bytes, 0, bytes.Length);
         file.Close();
@@ -228,7 +246,7 @@ public class DBController
         var file = File.Create("./controllers/DB/DB.json");
         DBController controller = new DBController();
         Console.Write(controller);
-        Console.Write(controller.Citas.Length);
+        Console.Write(controller.Citas.Count);
 
         var data = JsonSerializer.Serialize(controller);
         byte[] bytes = new UTF8Encoding(true).GetBytes(data);
