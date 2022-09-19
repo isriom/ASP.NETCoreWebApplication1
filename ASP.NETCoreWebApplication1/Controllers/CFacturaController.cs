@@ -1,4 +1,6 @@
-﻿using System.Text.Json;
+﻿using System.Security.Claims;
+using System.Security.Principal;
+using System.Text.Json;
 using ASP.NETCoreWebApplication1.Controllers.DB;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -15,10 +17,6 @@ public class CFacturasController : Controller
 
     public CFacturasController()
     {
-        facturap = new Data.Consulta_factura();
-        // User.IsInRole("Administrators");
-        facturap.Cliente = "Felix";
-        facturap.Numero_de_Factura = 11;
     }
 
 
@@ -58,11 +56,29 @@ public class CFacturasController : Controller
     [Route("[controller]/post")]
     public ActionResult Insert(Data.Consulta_factura data)
     {
-        Console.Out.Write("Prueba");
-        Console.Out.Write(data);
-        var jsonstring = JsonSerializer.Serialize(facturap);
-        Console.Out.Write("jsonstring:\n");
-        Console.Out.Write(jsonstring);
-        return CreatedAtAction(nameof(Insert), new Data.Consulta_factura());
+        var file = "";
+        if (User.IsInRole("Trabajador"))
+        {
+            file = "./Facturas/F" + data.Numero_de_Factura.ToString()+".pdf";
+            Console.Out.Write("Trabajador");
+        }
+        else
+        {
+            if (DBController.IsOwner(User.Identity.Name, data.Numero_de_Factura))
+            {
+                file = "./Facturas/F" + data.Numero_de_Factura.ToString()+".pdf";
+                Console.Out.Write("Clientes");
+                Console.Out.Write(User.Identity.Name);
+
+            }
+        }
+
+        if (file == "")
+        {
+            return NotFound();
+        }
+
+        Response.ContentType = "application/pdfapplication/pdf";
+        return File(System.IO.File.ReadAllBytes(file), "application/pdf");
     }
 }

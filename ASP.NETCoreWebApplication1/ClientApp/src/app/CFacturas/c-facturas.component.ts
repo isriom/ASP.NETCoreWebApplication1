@@ -25,6 +25,7 @@ export class CFacturasComponent implements OnInit {
   };
   cliente: any;
   pdf: string;
+  factura: any;
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.http = http;
@@ -53,21 +54,33 @@ export class CFacturasComponent implements OnInit {
   async Consult_Button() {
     this.pdf = ""
     const answer = {
-      'cliente': (<HTMLInputElement>document.getElementById("Cliente")).value,
-      'n_factura': (<HTMLInputElement>document.getElementById("Numero de Placa")).value
+      'Cliente': (<HTMLInputElement>document.getElementById("Cliente")).value,
+      'Numero_de_Factura': (<HTMLInputElement>document.getElementById("Numero_de_Factura")).value
     };
 
     console.log(this.respuesta);
     console.log(answer);
     let res = await this.http.post("https://localhost:7143/CFacturas/post", JSON.stringify(answer), {
-      headers: this.httpOptions.headers,
+      responseType: "blob",
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'withCredentials': 'true'
+      },),
       withCredentials: true,
     })
     res.subscribe(result => {
+
+      let blob = new Blob([result], {type: result.type})
+      this.pdf = window.URL.createObjectURL(blob);
       this.respuesta = result;
       console.log(this.respuesta);
 
-    }, error => console.error(error));
+    }, error => {
+      Popup.open("ERROR", "No Se encuentra una factura con este Numero a su nombre", "Recargar", function () {
+        window.location.reload();
+      })
+      console.error(error);
+    });
     console.log(res)
 
   }

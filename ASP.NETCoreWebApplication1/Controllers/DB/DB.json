@@ -56,14 +56,14 @@
   ],
   "Clientes": [
     {
-      "Nombre_Completo": "",
+      "Nombre_Completo": "Isriom",
       "Cedula": null,
       "Correo_electronico": "",
       "Direccion_1": "",
       "Direccion_2": "",
       "Telefono_1": null,
       "Telefono_2": null,
-      "Usuario": "",
+      "Usuario": "Isriom",
       "Password": "8670838"
     },
     {
@@ -91,8 +91,8 @@
   ],
   "Facturas": [
     {
-      "Cliente": "",
-      "Numero_de_Factura": null
+      "Cliente": "Isriom",
+      "Numero_de_Factura": 1
     },
     {
       "Cliente": "",

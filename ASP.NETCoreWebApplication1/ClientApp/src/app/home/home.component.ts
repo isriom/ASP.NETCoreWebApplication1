@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {Popup} from "../Popup/Popup.component";
 
 @Component({
   selector: 'app-home',
@@ -49,7 +50,7 @@ export class HomeComponent implements OnInit {
   async Sig_In() {
     const answer = {
       'Usuario': (<HTMLInputElement>document.getElementById("Usuario")).value,
-      'Contrasena': (<HTMLInputElement>document.getElementById("Contraseña")).value,
+      'Contraseña': (<HTMLInputElement>document.getElementById("Contraseña")).value,
     };
     console.log(answer);
     const res = this.http.put<string>("https://localhost:7143/login/Singin", answer, {
@@ -67,7 +68,12 @@ export class HomeComponent implements OnInit {
       window.location.reload()
       console.log(this.respuesta);
 
-    }, error => console.error(error));
+    }, error => {
+      Popup.open("ERROR IN LOGIN", "EL USUARIO Y/O LA CONTRASEÑA NO COINCIDEN","RECARGAR",function () {
+        window.location.reload();
+      })
+      console.error(error)
+    });
   }
 
 

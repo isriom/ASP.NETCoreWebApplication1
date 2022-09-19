@@ -105,22 +105,25 @@ public class DBController
      * 
      */
     public DBController.cita[] Citas { get; set; }
+
     /**
      * 
      */
 
     public trabajador[] Trabajadores { get; set; }
+
     /**
      * 
      */
 
     public cliente[] Clientes { get; set; }
+
     /**
      * 
      */
 
     public Factura[] Facturas { get; set; }
-    
+
     /**
      * 
      */
@@ -132,6 +135,7 @@ public class DBController
         Facturas = facturas ?? throw new ArgumentNullException(nameof(facturas));
         DBController.DB = this;
     }
+
     /**
      * 
      */
@@ -162,23 +166,40 @@ public class DBController
      */
     public static string FoundUser(string name, string pass)
     {
+        Console.Out.Write(pass);
         foreach (trabajador trabajador in DB.Trabajadores)
         {
             if (trabajador.Nombre == name && trabajador.Password == pass)
             {
+                Console.Out.Write("trabajador");
                 return "Trabajador";
             }
         }
 
         foreach (cliente cliente in DB.Clientes)
-        { 
+        {
             if (cliente.Usuario == name && cliente.Password == pass)
             {
+                Console.Out.Write("cliente");
                 return "Cliente";
             }
         }
 
         return "No Found";
+    }
+
+    public static bool IsOwner(string name, int? Nfactura)
+    {
+        foreach (var factura in DB.Facturas)
+        {
+            if (factura.Cliente == name && factura.Numero_de_Factura==Nfactura)
+            {
+                Console.Out.Write(factura.Cliente);
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public static void load()

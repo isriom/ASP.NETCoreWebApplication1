@@ -2,18 +2,27 @@
   width: 100%;
 }
 
+app-CFacturas {
+  width: inherit;
+  height: auto;
+}
+
 #maindiv {
   display: flex;
   flex-direction: row;
+  flex-basis: auto;
+  align-content: space-between;
+  justify-content: space-between;
   margin: 15px;
+  width: 100%;
 }
 
 #PDF {
-  margin: 40px;
+  width: 100%;
 }
 
 #centraldiv {
-  width: 40%;
+  width: 35%;
   position: relative;
   left: 3%;
   padding-left: 0;
@@ -63,4 +72,9 @@ button {
 }
 
 div {
+}
+
+iframe {
+  height: 100%;
+  width: 100%;
 }

@@ -30,17 +30,19 @@ public class loginController : Controller
     public async Task<ActionResult> login(Data.loginUser data)
     {
         Console.Out.Write("data\n");
-        var rol = await AuthenticateUser(data.Usuario, data.Usuario);
-        Console.Out.Write(data);
+        var rol = await AuthenticateUser(data.Usuario, data.Contraseña);
+        Console.Out.Write(JsonSerializer.Serialize(data));
         var aut = false;
-        if (rol=="No Found")
+        if (rol == "No Found")
         {
             aut = false;
+            Console.Out.Write("No found");
         }
         else
         {
             aut = true;
         }
+
         if (aut)
         {
             var claims = new List<Claim>
@@ -69,7 +71,7 @@ public class loginController : Controller
     private async Task<string> AuthenticateUser(string id, string password)
     {
         //Implementar codigo para revisar base de datos
-        var role= DBController.FoundUser(id, password);
+        var role = DBController.FoundUser(id, password);
         return role;
     }
 
