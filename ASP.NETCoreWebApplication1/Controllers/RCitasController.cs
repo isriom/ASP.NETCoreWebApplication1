@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using ASP.NETCoreWebApplication1.Controllers.DB;
+using ASP.NETCoreWebApplication1.Controllers.DB.Facturas;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -60,13 +61,11 @@ public class RCitasController : Controller
 
     [HttpPost]
     [Route("[controller]/post")]
-    public ActionResult Insert(Data.cita data)
+    public ActionResult Insert(Data.cita cita)
     {
-        Console.Out.Write("Prueba");
-        Console.Out.Write(data);
-        var jsonstring = JsonSerializer.Serialize(prueba);
-        Console.Out.Write("jsonstring:\n");
-        Console.Out.Write(jsonstring);
-        return CreatedAtAction(nameof(Insert), new Data.cita());
+        Console.Out.Write("Creando el pdf");
+        string numeroF = PDFHandler.FacturaCita(cita);
+        DBController.RegistrarCitayFactura(cita, Convert.ToDouble(numeroF));
+        return CreatedAtAction(nameof(Insert), numeroF);
     }
 }
