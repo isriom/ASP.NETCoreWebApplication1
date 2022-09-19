@@ -17,7 +17,7 @@ public class DBController
 
         public cita(Data.cita cita, double No)
         {
-            Cliente = cita.Cliente; 
+            Cliente = cita.Cliente;
             Placa_del_Vehiculo = cita.Placa_del_Vehiculo;
             Sucursal = cita.Sucursal;
             Servicio_solicitado = cita.Servicio_solicitado;
@@ -73,6 +73,19 @@ public class DBController
 
             Password = No.ToString();
         }
+
+        public cliente(Data.G_ClientesVC cliente)
+        {
+            Nombre_Completo = cliente.Nombre_Completo;
+            Correo_electronico = cliente.Correo_electronico;
+            Cedula = cliente.Cedula;
+            Direccion_1 = cliente.Direccion_1;
+            Direccion_2 = cliente.Direccion_2;
+            Telefono_1 = cliente.Telefono_1;
+            Telefono_2 = cliente.Telefono_2;
+            Usuario = cliente.Usuario;
+            Password = cliente.Password;
+        }
     }
 
     public class Factura : Data.Consulta_factura
@@ -124,6 +137,28 @@ public class DBController
             new Factura(new Data.Consulta_factura()), new Factura(new Data.Consulta_factura()),
             new Factura(new Data.Consulta_factura()),
         } ?? throw new ArgumentNullException(nameof(DBController.Facturas));
+    }
+
+
+    public static string FoundUser(string name, string pass)
+    {
+        foreach (trabajador trabajador in DB.Trabajadores)
+        {
+            if (trabajador.Nombre == name && trabajador.Password == pass)
+            {
+                return trabajador.Rol;
+            }
+        }
+
+        foreach (cliente cliente in DB.Clientes)
+        {
+            if (cliente.Usuario == name && cliente.Password == pass)
+            {
+                return "Client";
+            }
+        }
+
+        return "No Found";
     }
 
     public static void load()

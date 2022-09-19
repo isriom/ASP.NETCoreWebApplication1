@@ -30,9 +30,17 @@ public class loginController : Controller
     public async Task<ActionResult> login(Data.loginUser data)
     {
         Console.Out.Write("data\n");
-        var aut = await AuthenticateUser(data.Usuario, data.Usuario);
+        var rol = await AuthenticateUser(data.Usuario, data.Usuario);
         Console.Out.Write(data);
-
+        var aut = false;
+        if (rol=="No Found")
+        {
+            aut = false;
+        }
+        else
+        {
+            aut = true;
+        }
         if (aut)
         {
             var claims = new List<Claim>
@@ -58,10 +66,11 @@ public class loginController : Controller
         return NotFound(data);
     }
 
-    private async Task<bool> AuthenticateUser(string id, string password)
+    private async Task<string> AuthenticateUser(string id, string password)
     {
         //Implementar codigo para revisar base de datos
-        return true;
+        var role= DBController.FoundUser(id, password);
+        return role;
     }
 
     [AllowAnonymous]

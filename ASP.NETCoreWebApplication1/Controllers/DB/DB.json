@@ -1,0 +1,106 @@
+{
+  "Citas": [
+    {
+      "Number": 1,
+      "Cliente": "",
+      "Placa_del_Vehiculo": null,
+      "Sucursal": "",
+      "Servicio_solicitado": ""
+    },
+    {
+      "Number": 2,
+      "Cliente": "",
+      "Placa_del_Vehiculo": null,
+      "Sucursal": "",
+      "Servicio_solicitado": ""
+    },
+    {
+      "Number": 3,
+      "Cliente": "",
+      "Placa_del_Vehiculo": null,
+      "Sucursal": "",
+      "Servicio_solicitado": ""
+    }
+  ],
+  "Trabajadores": [
+    {
+      "Nombre": "",
+      "Apellidos": "",
+      "Numero_Cedula": null,
+      "Fecha_Ingreso": "",
+      "Fecha_Nacimiento": "",
+      "Edad": null,
+      "Password": "",
+      "Rol": ""
+    },
+    {
+      "Nombre": "",
+      "Apellidos": "",
+      "Numero_Cedula": null,
+      "Fecha_Ingreso": "",
+      "Fecha_Nacimiento": "",
+      "Edad": null,
+      "Password": "",
+      "Rol": ""
+    },
+    {
+      "Nombre": "",
+      "Apellidos": "",
+      "Numero_Cedula": null,
+      "Fecha_Ingreso": "",
+      "Fecha_Nacimiento": "",
+      "Edad": null,
+      "Password": "",
+      "Rol": ""
+    }
+  ],
+  "Clientes": [
+    {
+      "Nombre_Completo": "",
+      "Cedula": null,
+      "Correo_electronico": "",
+      "Direccion_1": "",
+      "Direccion_2": "",
+      "Telefono_1": null,
+      "Telefono_2": null,
+      "Usuario": "",
+      "Password": "8670838"
+    },
+    {
+      "Nombre_Completo": "",
+      "Cedula": null,
+      "Correo_electronico": "",
+      "Direccion_1": "",
+      "Direccion_2": "",
+      "Telefono_1": null,
+      "Telefono_2": null,
+      "Usuario": "",
+      "Password": "8670838"
+    },
+    {
+      "Nombre_Completo": "",
+      "Cedula": null,
+      "Correo_electronico": "",
+      "Direccion_1": "",
+      "Direccion_2": "",
+      "Telefono_1": null,
+      "Telefono_2": null,
+      "Usuario": "",
+      "Password": "8670838"
+    }
+  ],
+  "Facturas": [
+    {
+      "Cliente": "",
+      "Numero_de_Factura": null
+    },
+    {
+      "Cliente": "",
+      "Numero_de_Factura": null
+    },
+    {
+      "Cliente": "",
+      "Numero_de_Factura": null
+    }
+  ]
+}
