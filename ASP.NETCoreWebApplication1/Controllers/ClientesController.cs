@@ -7,16 +7,14 @@ namespace ASP.NETCoreWebApplication1.Controllers;
 
 [ApiController]
 [Authorize]
-[Authorize (Roles = "Trabajador")]
+[Authorize(Roles = "Trabajador")]
 public class ClientesController : Controller
 {
-    
     private Data.G_clientes ejemplo;
-    
+
 
     public ClientesController()
     {
-        
     }
 
 
@@ -62,7 +60,6 @@ public class ClientesController : Controller
     [Route("[controller]/post")]
     public ActionResult Insert(Data.G_clientes cliente)
     {
-        
         DBController.RegistrarTC(cliente);
         Console.Out.Write("Cliente Registrado");
         var jsonstring = JsonSerializer.Serialize(cliente);
