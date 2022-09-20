@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {Popup} from "../Popup/Popup.component";
+
 /**
  * Componentes utilizados para el funcionamiento de la pagina
  */
@@ -28,6 +29,7 @@ export class HomeComponent implements OnInit {
       'withCredentials': 'true'
     })
   };
+
   /**
    * Constructor de la clase
    * @param http variable para la manipulacion del get y post
@@ -85,7 +87,7 @@ export class HomeComponent implements OnInit {
       console.log(this.respuesta);
 
     }, error => {
-      Popup.open("ERROR IN LOGIN", "EL USUARIO Y/O LA CONTRASEÑA NO COINCIDEN","RECARGAR",function () {
+      Popup.open("ERROR IN LOGIN", "EL USUARIO Y/O LA CONTRASEÑA NO COINCIDEN", "RECARGAR", function () {
         window.location.reload();
       })
       console.error(error)

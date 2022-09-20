@@ -1,6 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {DomSanitizer, SafeHtml, SafeUrl} from "@angular/platform-browser";
 import {Router} from '@angular/router';
 import {Popup} from "../Popup/Popup.component";
 

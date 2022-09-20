@@ -1,6 +1,7 @@
 ﻿import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {trabajadoresComponent} from "./trabajadores.component";
+
 /**
  * Metodo para realizar la configuracion del angular
  */

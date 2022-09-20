@@ -1,6 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Router} from "@angular/router";
+
 /**
  * Componentes utilizados para el funcionamiento de la pagina
  */
@@ -37,6 +38,7 @@ export class trabajadoresComponent {
     this.baseurl = baseUrl;
     this.Obtener_trabajadores();
   }
+
   /**
    * Metodo que crea la pagina en el momento que es solicitada en los componentes de la barra de menu
    * @constructor metodo donde se hace la llamada
@@ -52,6 +54,7 @@ export class trabajadoresComponent {
     }, error => console.error(error));
     console.log(this.respuesta);
   }
+
   /**
    * Metodo para definar la accion que debe realizar el boton para obtener la informacion relacionada al Trabajador
    * @constructor metodo relacionado
@@ -78,6 +81,7 @@ export class trabajadoresComponent {
     }, error => console.error(error));
     console.log(res)
   }
+
   /**
    * Metodo para definir la funcionalidad del boton de DELETE
    * @constructor metodo relacionado

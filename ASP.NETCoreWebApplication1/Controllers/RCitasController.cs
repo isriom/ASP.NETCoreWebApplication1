@@ -8,16 +8,10 @@ namespace ASP.NETCoreWebApplication1.Controllers;
 
 [ApiController]
 [Authorize]
-[Authorize (Roles = "Cliente")]
+[Authorize(Roles = "Cliente")]
 public class RCitasController : Controller
 {
-    
     private Data.cita prueba;
-
-    public RCitasController()
-    {
-        
-    }
 
 
     [HttpGet]
@@ -59,7 +53,7 @@ public class RCitasController : Controller
     public ActionResult Insert(Data.cita cita)
     {
         Console.Out.Write("Creando el pdf");
-        string numeroF = PDFHandler.FacturaCita(cita);
+        var numeroF = PDFHandler.FacturaCita(cita);
         DBController.RegistrarCitayFactura(cita, Convert.ToDouble(numeroF));
         return CreatedAtAction(nameof(Insert), numeroF);
     }

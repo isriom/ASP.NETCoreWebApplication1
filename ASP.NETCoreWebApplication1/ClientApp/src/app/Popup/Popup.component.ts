@@ -1,6 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {DomSanitizer, SafeHtml, SafeUrl} from "@angular/platform-browser";
+import {HttpClient} from "@angular/common/http";
 import {Router} from '@angular/router';
 
 /**
@@ -17,16 +16,15 @@ import {Router} from '@angular/router';
  */
 export class Popup implements OnInit {
 
+  static pop: Popup;
   http: HttpClient;
   router: Router | undefined;
   baseurl: string;
-
   div = document.getElementById("popup");
   Title: any = "Titulo";
-  actionF: Function = () => this.close();
   Text: string = "TEXTO";
   actionText: string = "ACTION";
-  static pop: Popup;
+
   /**
    * Constructor de la clase
    * @param http variable para la manipulacion del get y post
@@ -38,13 +36,6 @@ export class Popup implements OnInit {
     this.setactionF(this.close);
     this.div = document.getElementById("popup");
     Popup.pop = this;
-    this.close()
-  }
-
-  /**
-   * Metodo para indicar ponerla cerrar
-   */
-  ngOnInit(): void {
     this.close()
   }
 
@@ -61,6 +52,15 @@ export class Popup implements OnInit {
     Popup.pop.Text = TEXT;
     Popup.pop.actionText = ACTIONTEXT;
     (<HTMLDivElement>Popup.pop.div).hidden = false;
+  }
+
+  actionF: Function = () => this.close();
+
+  /**
+   * Metodo para indicar ponerla cerrar
+   */
+  ngOnInit(): void {
+    this.close()
   }
 
   /**

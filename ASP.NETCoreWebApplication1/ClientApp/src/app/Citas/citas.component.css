@@ -4,6 +4,7 @@
 .element-input {
   width: 100%;
 }
+
 /**
 
  */
@@ -17,6 +18,7 @@
   flex-direction: column;
   margin: 0;
 }
+
 /**
 Formato del encabezado donde se encuentra el titulo de la pagina
  */
@@ -30,6 +32,7 @@ Formato del encabezado donde se encuentra el titulo de la pagina
   background-color: #f5c2c7;
   font-weight: bold;
 }
+
 /**
 Formato de los figura de los botones de la pagina
 */

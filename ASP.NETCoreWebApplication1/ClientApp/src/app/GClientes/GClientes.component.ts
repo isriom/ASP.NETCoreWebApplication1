@@ -37,6 +37,7 @@ export class GClientesComponent {
     this.baseurl = baseUrl;
     this.Obtener_Clientes();
   }
+
   /**
    * Metodo que el cual direcciona a la pagina de clientes al ser solicitada en la barra de menu
    * @constructor metodo relacionado
@@ -52,6 +53,7 @@ export class GClientesComponent {
     }, error => console.error(error));
     console.log(this.respuesta);
   }
+
   /**
    * Metodo donde se definen las acciones a realizar al clickear el boton de ADD
    * @constructor metodo relacionado
@@ -83,6 +85,7 @@ export class GClientesComponent {
     console.log(res)
 
   }
+
   /**
    * Metodo donde se define la funcion del boton DELETE
    * @constructor

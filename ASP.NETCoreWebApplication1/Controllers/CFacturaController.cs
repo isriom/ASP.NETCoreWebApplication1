@@ -1,6 +1,4 @@
-﻿using System.Security.Claims;
-using System.Security.Principal;
-using System.Text.Json;
+﻿using System.Text.Json;
 using ASP.NETCoreWebApplication1.Controllers.DB;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -9,15 +7,10 @@ namespace ASP.NETCoreWebApplication1.Controllers;
 
 [ApiController]
 [Authorize]
-[Authorize (Roles = "Cliente")]
+[Authorize(Roles = "Cliente")]
 public class CFacturasController : Controller
 {
-    
     private Data.Consulta_factura facturap;
-
-    public CFacturasController()
-    {
-    }
 
 
     [HttpGet]
@@ -59,23 +52,20 @@ public class CFacturasController : Controller
         var file = "";
         if (User.IsInRole("Trabajador"))
         {
-            file = "./Facturas/F" + data.Numero_de_Factura.ToString() + ".pdf";
+            file = "./Facturas/F" + data.Numero_de_Factura + ".pdf";
             Console.Out.Write("Trabajador");
         }
         else
         {
             if (DBController.IsOwner(User.Identity.Name, data.Numero_de_Factura))
             {
-                file = "./Facturas/F" + data.Numero_de_Factura.ToString() + ".pdf";
+                file = "./Facturas/F" + data.Numero_de_Factura + ".pdf";
                 Console.Out.Write("Clientes");
                 Console.Out.Write(User.Identity.Name);
             }
         }
 
-        if (file == "")
-        {
-            return NotFound();
-        }
+        if (file == "") return NotFound();
 
         Response.ContentType = "application/pdfapplication/pdf";
         return File(System.IO.File.ReadAllBytes(file), "application/pdf");

@@ -25,6 +25,7 @@ export class RCitasComponent {
       'withCredentials': 'true'
     })
   };
+
   /**
    * Constructor de la clase
    * @param http variable para la manipulacion del get y post
@@ -35,6 +36,7 @@ export class RCitasComponent {
     this.baseurl = baseUrl;
     this.Obtener_Cita();
   }
+
   /**
    * Metodo que crea la pagina en el momento que es solicitada en los componentes de la barra de menu
    * @constructor metodo donde se hace la llamada
@@ -76,6 +78,7 @@ export class RCitasComponent {
     }, error => console.error(error));
     console.log(res)
   }
+
   /**
    * Metodo para definir la funcionalidad del boton de DELETE
    * @constructor metodo relacionado

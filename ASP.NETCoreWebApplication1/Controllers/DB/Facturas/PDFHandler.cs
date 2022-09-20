@@ -9,30 +9,28 @@ using iText.Layout.Element;
 using iText.Layout.Properties;
 
 namespace ASP.NETCoreWebApplication1.Controllers.DB.Facturas;
+
 /**
- * Clase que maneja la creacion de los pdf para las facturas 
+ * Clase que maneja la creacion de los pdf para las facturas
  */
 public class PDFHandler
 {
     /**
-     * Metodo que  genera la nueva factura generando un numero para identificarlas 
+     * Metodo que  genera la nueva factura generando un numero para identificarlas
      */
-    static public string FacturaCita(Data.cita cita)
+    public static string FacturaCita(Data.cita cita)
 
     {
         byte[] name;
         double No = 0;
         name = MD5.Create()
             .ComputeHash(Encoding.UTF8.GetBytes(cita.Cliente + cita.Servicio_solicitado + cita.Sucursal));
-        for (int i = 0; i < name.Length; i++)
-        {
-            No += name[i] * Math.Pow(2, i);
-        }
+        for (var i = 0; i < name.Length; i++) No += name[i] * Math.Pow(2, i);
 
         Console.Out.Write(No);
 
-        PdfDocument Factura = new PdfDocument(new PdfWriter("Facturas/F" + No + ".pdf"));
-        Document layoutDocument = new Document(Factura);
+        var Factura = new PdfDocument(new PdfWriter("Facturas/F" + No + ".pdf"));
+        var layoutDocument = new Document(Factura);
         //TITULO
         layoutDocument.SetFontSize(38f);
         layoutDocument.Add(new Paragraph("FACTURA No." + No).SetBold().SetTextAlignment(TextAlignment.CENTER));
@@ -41,7 +39,7 @@ public class PDFHandler
         //Desglose de Servicios
         AddServices(layoutDocument, cita);
         layoutDocument.Close();
-        PDFHandler.CreateMetaData(cita, No.ToString());
+        CreateMetaData(cita, No.ToString());
         return No.ToString();
     }
 
@@ -53,23 +51,19 @@ public class PDFHandler
         layoutDocument.SetFontSize(12.5f);
         layoutDocument.Add(new LineSeparator(new SolidLine())).SetBorder(Border.NO_BORDER);
 
-        Table tabla = new Table(4, false);
+        var tabla = new Table(4, false);
         tabla.AddCell(new Paragraph("Cliente: "))
             .AddCell(new Paragraph(cita.Cliente));
         tabla.AddCell(new Paragraph("Fecha: "))
-            .AddCell(new Paragraph(System.DateTime.Now.ToString("G")));
+            .AddCell(new Paragraph(DateTime.Now.ToString("G")));
 
         tabla.AddCell("Sucursal: ")
             .AddCell(new Paragraph(cita.Sucursal));
         tabla.AddCell(new Paragraph("Mecanico: "));
         if (cita.GetMecanico() == null)
-        {
             tabla.AddCell("");
-        }
         else
-        {
             tabla.AddCell(new Paragraph(cita.GetMecanico()));
-        }
 
         tabla.AddCell(new Paragraph("Vehiculo: "))
             .AddCell(new Paragraph(cita.Placa_del_Vehiculo.ToString()));
@@ -83,15 +77,16 @@ public class PDFHandler
         RemoveBorder(tabla);
         layoutDocument.Add(tabla).SetBorder(Border.NO_BORDER);
     }
+
     /**
-     * Metodo que agrega los datos del servicio solicitado a la factura 
+     * Metodo que agrega los datos del servicio solicitado a la factura
      */
     public static void AddServices(Document layoutDocument, Data.cita cita)
     {
         layoutDocument.SetFontSize(12.5f);
         layoutDocument.Add(new LineSeparator(new SolidLine())).SetBorder(Border.NO_BORDER);
 
-        Table tabla = new Table(3, false);
+        var tabla = new Table(3, false);
         tabla.AddCell(new Paragraph("Servicio: "))
             .AddCell(new Paragraph("cantidad"))
             .AddCell(new Paragraph("Precio"));
@@ -108,7 +103,7 @@ public class PDFHandler
     }
 
     /**
-     * Metodo para remover el borde a la tabla donde se agregaron los elementos de la factura 
+     * Metodo para remover el borde a la tabla donde se agregaron los elementos de la factura
      */
     public static void RemoveBorder(Table table)
     {
@@ -118,15 +113,16 @@ public class PDFHandler
             element.SetBorder(Border.NO_BORDER);
         }
     }
+
     /**
-     * Metodo para obtener los datos que se ingresaron en el Registro de Citas 
+     * Metodo para obtener los datos que se ingresaron en el Registro de Citas
      */
     public static void CreateMetaData(Data.cita cita, string No)
     {
         var file = File.Create("./Facturas/Metadata/M" + No + ".json");
 
         var data = JsonSerializer.Serialize(cita);
-        byte[] bytes = new UTF8Encoding(true).GetBytes(data);
+        var bytes = new UTF8Encoding(true).GetBytes(data);
         Console.Write(bytes);
         Console.Write(data);
         file.Write(bytes, 0, bytes.Length);

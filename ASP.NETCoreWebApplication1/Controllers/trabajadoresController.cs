@@ -7,16 +7,10 @@ namespace ASP.NETCoreWebApplication1.Controllers;
 
 [ApiController]
 [Authorize]
-[Authorize (Roles = "Trabajador")]
+[Authorize(Roles = "Trabajador")]
 public class trabajadoresController : Controller
 {
     private Data.G_trabajadores ejemplo;
-    
-
-    public trabajadoresController()
-    {
-       
-    }
 
 
     [HttpGet]

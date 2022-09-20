@@ -7,16 +7,11 @@ namespace ASP.NETCoreWebApplication1.Controllers;
 
 [ApiController]
 [Authorize]
-[Authorize (Roles = "Cliente")]
+[Authorize(Roles = "Cliente")]
 public class GClientesController : Controller
 {
     //Variarible de estructura
     private Data.G_ClientesVC ejemplo;
-
-    public GClientesController()
-    {
-        
-    }
 
 
     [HttpGet]
@@ -62,7 +57,6 @@ public class GClientesController : Controller
     [Route("[controller]/post")]
     public ActionResult Insert(Data.G_ClientesVC cliente)
     {
-        
         Console.Out.Write("Cliente Registrado");
         DBController.RegistrarCC(cliente);
         return CreatedAtAction(nameof(Insert), new Data.G_ClientesVC());

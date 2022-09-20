@@ -13,11 +13,6 @@ public class ClientesController : Controller
     private Data.G_clientes ejemplo;
 
 
-    public ClientesController()
-    {
-    }
-
-
     [HttpGet]
     [Route("[controller]/{data}")]
     public ActionResult Register(string? data)

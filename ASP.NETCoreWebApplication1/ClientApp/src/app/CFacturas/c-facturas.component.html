@@ -1,11 +1,11 @@
 //Estructura de la pagina Web
-<div id="maindiv" class="w-auto h-auto justify-content-between justify-content-lg-between">
+<div class="w-auto h-auto justify-content-between justify-content-lg-between" id="maindiv">
   <div class="portfolio-item mx-auto w-auto h-auto" id="centraldiv">
     <div id="title">Consulta de Facturas</div>
     <div class="form-floating mb-3">
       <p class="text-decoration-underline" font-size="16">Cliente</p>
       <input class="form-control-lg mx-auto element-input" id="Cliente" placeholder="Espacio requerido"
-              value="{{cliente}}">
+             value="{{cliente}}">
       <p class="text-decoration-underline" font-size="16">Numero de factura</p>
       <input class="form-control-lg mx-auto element-input" id="Numero_de_Factura" placeholder="Espacio requerido"
              value="{{factura}}">
@@ -18,8 +18,8 @@
 
 
   </div>
-  <div class="portfolio-item w-auto h-auto container-xl" id="PDF" style="width: 150%;height: 100%" >
+  <div class="portfolio-item w-auto h-auto container-xl" id="PDF" style="width: 150%;height: 100%">
     <p font-size="16">Factura #{{factura}}</p>
-    <iframe class="container-xl " style="height: 150%; width: 150%" [src]="this.pdf|safe">Prueba</iframe>
+    <iframe [src]="this.pdf|safe" class="container-xl " style="height: 150%; width: 150%">Prueba</iframe>
   </div>
 </div>

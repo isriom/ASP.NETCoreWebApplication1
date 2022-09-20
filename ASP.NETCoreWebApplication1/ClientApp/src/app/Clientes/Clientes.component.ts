@@ -77,7 +77,7 @@ export class ClientesComponent {
     res.subscribe(result => {
       this.respuesta = result;
       Popup.open("REGISTRO EXITOSO", "Se ha registrado la informacion. Revisar correo para acceder a su contraseña ", "Inicio", function () {
-      window.location.assign("");
+        window.location.assign("");
       });
 
       console.log(this.respuesta);

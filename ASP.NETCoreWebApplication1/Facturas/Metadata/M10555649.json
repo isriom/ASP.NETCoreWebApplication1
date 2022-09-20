@@ -1,1 +1,6 @@
-{"Cliente":"Isriom","Placa_del_Vehiculo":123456,"Sucursal":"SJ","Servicio_solicitado":"Limpieza"}
+{
+  "Cliente": "Isriom",
+  "Placa_del_Vehiculo": 123456,
+  "Sucursal": "SJ",
+  "Servicio_solicitado": "Limpieza"
+}
