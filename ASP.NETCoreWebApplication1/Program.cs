@@ -1,20 +1,22 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
-
+//Load Database from FILE
 DBController.load();
 
 var builder = WebApplication.CreateBuilder(args);
-
+// Add cookie Authenticationas a default politic
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
         options.LoginPath = "";
         options.AccessDeniedPath = "";
     });
+//Add cors
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(
         policy =>
         {
+            //Allow exchange betwen proxy, real server and web browser
             policy.WithOrigins("https://localhost:7143", "https://localhost:44477", "https://localhost:44366",
                 "https://localhost:33863").AllowCredentials();
             policy.WithMethods("PUT", "GET", "POST", "DELETE");
@@ -39,6 +41,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 
 app.UseHttpsRedirection();
+// Use angular webs sites 
 app.UseStaticFiles();
 app.UseRouting();
 
