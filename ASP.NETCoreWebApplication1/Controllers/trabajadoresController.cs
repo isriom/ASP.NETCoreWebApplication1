@@ -7,24 +7,15 @@ namespace ASP.NETCoreWebApplication1.Controllers;
 
 [ApiController]
 [Authorize]
+[Authorize (Roles = "Trabajador")]
 public class trabajadoresController : Controller
 {
-    private static trabajadoresController? _instance;
     private Data.G_trabajadores ejemplo;
-    private List<Data.G_trabajadores> Trabajadores = new();
+    
 
     public trabajadoresController()
     {
-        ejemplo = new Data.G_trabajadores();
-        // User.IsInRole("Administrators");
-        ejemplo.Nombre = "Armando";
-        ejemplo.Apellidos = "Perez Mora";
-        ejemplo.Numero_Cedula = 258741028;
-        ejemplo.Fecha_Ingreso = "25/08/2014";
-        ejemplo.Fecha_Nacimiento = "7/3/1987";
-        ejemplo.Edad = 35;
-        ejemplo.Password = "hdbsajnojds";
-        ejemplo.Rol = "Mecanico";
+       
     }
 
 
@@ -68,10 +59,11 @@ public class trabajadoresController : Controller
 
     [HttpPost]
     [Route("[controller]/post")]
-    public ActionResult Insert(string data)
+    public ActionResult Insert(Data.G_trabajadores trabajador)
     {
         Console.Out.Write("Prueba");
-        Console.Out.Write(data);
+        DBController.RegistrarTT(trabajador);
+        Console.Out.Write(trabajador);
         var jsonstring = JsonSerializer.Serialize(ejemplo);
         Console.Out.Write("jsonstring:\n");
         Console.Out.Write(jsonstring);

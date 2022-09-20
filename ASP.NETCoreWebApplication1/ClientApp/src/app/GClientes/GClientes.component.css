@@ -1,7 +1,12 @@
-﻿.element-input {
+﻿/**
+
+ */
+.element-input {
   width: 100%;
 }
+/**
 
+ */
 #centraldiv {
   width: 40%;
   position: absolute;
@@ -12,7 +17,9 @@
   flex-direction: column;
   margin: 0;
 }
-
+/**
+ Formato del encabezado donde se encuentra el titulo de la pagina
+ */
 #title {
   align-content: center;
   alignment: center;
@@ -23,7 +30,9 @@
   font-weight: bold;
   background-color: #C8E700;
 }
-
+/**
+Formato de los figura de los botones de la pagina
+ */
 #Buttons {
   display: flex;
   margin: 5%;
@@ -32,7 +41,9 @@
   justify-content: space-evenly;
 
 }
-
+/**
+Define las caracteristicas que tendran los botones
+ */
 #Buttons > button {
   width: 30%;
   font-size: larger;

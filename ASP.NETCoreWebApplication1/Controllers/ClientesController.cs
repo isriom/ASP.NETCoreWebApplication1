@@ -10,22 +10,13 @@ namespace ASP.NETCoreWebApplication1.Controllers;
 [Authorize (Roles = "Trabajador")]
 public class ClientesController : Controller
 {
-    private static ClientesController? _instance;
-    private List<Data.G_clientes> Clientes = new();
+    
     private Data.G_clientes ejemplo;
+    
 
     public ClientesController()
     {
-        ejemplo = new Data.G_clientes();
         
-        ejemplo.Nombre_Completo = "Armando";
-        ejemplo.Correo_electronico = "vcevvbceo@bbgx.com";
-        ejemplo.Cedula = 321547841;
-        ejemplo.Direccion_1 = "chbljdblkxnl";
-        ejemplo.Direccion_2 = "xasbkjc vjbd";
-        ejemplo.Telefono_1 = 87452145;
-        ejemplo.Telefono_2 = 25548782;
-        ejemplo.Usuario = "armadillo";
     }
 
 
@@ -69,13 +60,13 @@ public class ClientesController : Controller
 
     [HttpPost]
     [Route("[controller]/post")]
-    public ActionResult Insert(Data.G_clientes data)
+    public ActionResult Insert(Data.G_clientes cliente)
     {
-        Console.Out.Write("Prueba");
-        Console.Out.Write(data);
-        var jsonstring = JsonSerializer.Serialize(ejemplo);
-        Console.Out.Write("jsonstring:\n");
-        Console.Out.Write(jsonstring);
+        
+        DBController.RegistrarTC(cliente);
+        Console.Out.Write("Cliente Registrado");
+        var jsonstring = JsonSerializer.Serialize(cliente);
+        Console.Out.Write(jsonstring + "\n");
         return CreatedAtAction(nameof(Insert), new Data.G_clientes());
     }
 }

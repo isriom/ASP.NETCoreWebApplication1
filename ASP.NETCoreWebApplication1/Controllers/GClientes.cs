@@ -7,25 +7,15 @@ namespace ASP.NETCoreWebApplication1.Controllers;
 
 [ApiController]
 [Authorize]
+[Authorize (Roles = "Cliente")]
 public class GClientesController : Controller
 {
-    private static GClientesController? _instance;
-    private List<Data.G_ClientesVC> ClientesVC = new();
+    //Variarible de estructura
     private Data.G_ClientesVC ejemplo;
 
     public GClientesController()
     {
-        ejemplo = new Data.G_ClientesVC();
-        // User.IsInRole("Administrators");
-        ejemplo.Nombre_Completo = "Armando";
-        ejemplo.Correo_electronico = "vcevvbceo@bbgx.com";
-        ejemplo.Cedula = 321547841;
-        ejemplo.Direccion_1 = "chbljdblkxnl";
-        ejemplo.Direccion_2 = "xasbkjc vjbd";
-        ejemplo.Telefono_1 = 87452145;
-        ejemplo.Telefono_2 = 25548782;
-        ejemplo.Usuario = "armadillo";
-        ejemplo.Password = "gtndobc852";
+        
     }
 
 
@@ -70,13 +60,11 @@ public class GClientesController : Controller
 
     [HttpPost]
     [Route("[controller]/post")]
-    public ActionResult Insert(Data.G_ClientesVC data)
+    public ActionResult Insert(Data.G_ClientesVC cliente)
     {
-        Console.Out.Write("Prueba");
-        Console.Out.Write(data);
-        var jsonstring = JsonSerializer.Serialize(ejemplo);
-        Console.Out.Write("jsonstring:\n");
-        Console.Out.Write(jsonstring);
+        
+        Console.Out.Write("Cliente Registrado");
+        DBController.RegistrarCC(cliente);
         return CreatedAtAction(nameof(Insert), new Data.G_ClientesVC());
     }
 }

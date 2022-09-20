@@ -2,11 +2,18 @@ import {Component, Inject} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Router} from "@angular/router";
 
+/**
+ * Componentes utilizados para el funcionamiento de la pagina
+ */
 @Component({
   selector: 'app-GClientes',
   templateUrl: './GClientes.component.html',
   styleUrls: ['./GClientes.component.css']
+
 })
+/**
+ * Clase donde se desarrolla las funcionalidades de la pagina de Cliente en la vista Cliente
+ */
 export class GClientesComponent {
   token = sessionStorage.getItem("tokenKey");
   respuesta = {};
@@ -20,12 +27,20 @@ export class GClientesComponent {
     })
   };
 
+  /**
+   * Constructor de la clase
+   * @param http variable para la manipulacion del get y post
+   * @param baseUrl variable para manejar la direccion de la pagina
+   */
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.http = http;
     this.baseurl = baseUrl;
     this.Obtener_Clientes();
   }
-
+  /**
+   * Metodo que el cual direcciona a la pagina de clientes al ser solicitada en la barra de menu
+   * @constructor metodo relacionado
+   */
   async Obtener_Clientes() {
     var res = await this.http.get<string>("https://localhost:7143/GClientes/plantilla", {
       headers: this.httpOptions.headers,
@@ -37,16 +52,19 @@ export class GClientesComponent {
     }, error => console.error(error));
     console.log(this.respuesta);
   }
-
+  /**
+   * Metodo donde se definen las acciones a realizar al clickear el boton de ADD
+   * @constructor metodo relacionado
+   */
   async Add_Button() {
     const answer = {
-      'Nombre': (<HTMLInputElement>document.getElementById("Nombre")).value,
-      'Numero_Cedula': (<HTMLInputElement>document.getElementById("Numero de Cedula")).value,
-      'Telefono1': (<HTMLInputElement>document.getElementById("Telefono 1")).value,
-      'Telefono2': (<HTMLInputElement>document.getElementById("Telefono 2")).value,
-      'Correo_e': (<HTMLInputElement>document.getElementById("Correo electronico")).value,
-      'Direccion1': (<HTMLInputElement>document.getElementById("Direccion 1")).value,
-      'Direccion2': (<HTMLInputElement>document.getElementById("Direccion 2")).value,
+      'Nombre_Completo': (<HTMLInputElement>document.getElementById("Nombre_Completo")).value,
+      'Cedula': (<HTMLInputElement>document.getElementById("Cedula")).value,
+      'Telefono_1': (<HTMLInputElement>document.getElementById("Telefono_1")).value,
+      'Telefono_2': (<HTMLInputElement>document.getElementById("Telefono_2")).value,
+      'Correo_electronico': (<HTMLInputElement>document.getElementById("Correo_electronico")).value,
+      'Direccion_1': (<HTMLInputElement>document.getElementById("Direccion_1")).value,
+      'Direccion_2': (<HTMLInputElement>document.getElementById("Direccion_2")).value,
       'Usuario': (<HTMLInputElement>document.getElementById("Usuario")).value,
       'Password': (<HTMLInputElement>document.getElementById("Password")).value
     };
@@ -63,8 +81,12 @@ export class GClientesComponent {
 
     }, error => console.error(error));
     console.log(res)
-  }
 
+  }
+  /**
+   * Metodo donde se define la funcion del boton DELETE
+   * @constructor
+   */
   async Delete_Button() {
 
   }

@@ -2,6 +2,9 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {CitasComponent} from "./citas.component";
 
+/**
+ * Metodo para la configuracion del Angular
+ */
 describe('CitasComponent', () => {
   let component: CitasComponent;
   let fixture: ComponentFixture<CitasComponent>;

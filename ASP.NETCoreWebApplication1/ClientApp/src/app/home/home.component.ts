@@ -2,14 +2,19 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {Popup} from "../Popup/Popup.component";
-
+/**
+ * Componentes utilizados para el funcionamiento de la pagina
+ */
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
 })
 
-
+/**
+ * Clase donde se desarrolla lo relacionada a la pantalla inicial de la pagina
+ */
 export class HomeComponent implements OnInit {
+  //Variables a utilizar
   token = sessionStorage.getItem("Token");
   user = sessionStorage.getItem("Nombre")
   headers = {};
@@ -23,7 +28,11 @@ export class HomeComponent implements OnInit {
       'withCredentials': 'true'
     })
   };
-
+  /**
+   * Constructor de la clase
+   * @param http variable para la manipulacion del get y post
+   * @param baseUrl variable para manejar la direccion de la pagina
+   */
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.http = http;
     this.baseurl = baseUrl;
@@ -35,6 +44,10 @@ export class HomeComponent implements OnInit {
     console.log(this.user)
   }
 
+  /**
+   * Metodo de inicia la pagina luego de ser compilada correctamente ya que es el inicio de la API
+   * @constructor Metodo relacionado
+   */
   async Obtener_plantilla() {
 
     var res = await this.http.get<string>("https://localhost:7143/login/plantilla", this.httpOptions).subscribe(result => {
@@ -46,7 +59,10 @@ export class HomeComponent implements OnInit {
     console.log(this.respuesta);
   }
 
-
+  /**
+   * Metodo donde se define la accion de atraer los datos para realizar las verificaciones correspondientes e iniciar sesion
+   * @constructor metodo relacionado
+   */
   async Sig_In() {
     const answer = {
       'Usuario': (<HTMLInputElement>document.getElementById("Usuario")).value,
@@ -76,7 +92,9 @@ export class HomeComponent implements OnInit {
     });
   }
 
-
+  /**
+   * Metodo donde se desarrolla la accion de cerrar sesion en la pagina
+   */
   async logout() {
     let res = await this.http.put("https://localhost:7143/logout", JSON.stringify({}), {
       headers: this.httpOptions.headers,

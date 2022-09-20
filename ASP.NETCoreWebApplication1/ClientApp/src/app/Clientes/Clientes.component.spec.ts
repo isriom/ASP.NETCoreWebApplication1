@@ -2,6 +2,9 @@
 
 import {ClientesComponent} from "./Clientes.component";
 
+/**
+ * Metodo para realizar la configuracion del angular
+ */
 describe('ClientesComponent', () => {
   let component: ClientesComponent;
   let fixture: ComponentFixture<ClientesComponent>;

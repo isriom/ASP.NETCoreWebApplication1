@@ -8,20 +8,15 @@ namespace ASP.NETCoreWebApplication1.Controllers;
 
 [ApiController]
 [Authorize]
+[Authorize (Roles = "Trabajador")]
 public class CitasController : Controller
 {
-    private static CitasController? _instance;
-    private List<Data.cita> Citas = new();
+    
     private Data.cita prueba;
 
     public CitasController()
     {
-        prueba = new Data.cita();
-        // User.IsInRole("Administrators");
-        prueba.Cliente = "Cliente de prueba";
-        prueba.Placa_del_Vehiculo = 1115486;
-        prueba.Sucursal = "Sucursal de prueba";
-        prueba.Servicio_solicitado = "Servicio de prueba";
+        
     }
 
 

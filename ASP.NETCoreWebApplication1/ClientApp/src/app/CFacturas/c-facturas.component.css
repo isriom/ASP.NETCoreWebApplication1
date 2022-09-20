@@ -1,12 +1,19 @@
+/**
+
+ */
 .element-input {
   width: 100%;
 }
+/**
 
+ */
 app-CFacturas {
   width: inherit;
   height: auto;
 }
+/**
 
+ */
 #maindiv {
   display: flex;
   flex-direction: row;
@@ -16,11 +23,15 @@ app-CFacturas {
   margin: 15px;
   width: 100%;
 }
+/**
 
+ */
 #PDF {
   width: 100%;
 }
+/**
 
+ */
 #centraldiv {
   width: 35%;
   position: relative;
@@ -31,7 +42,9 @@ app-CFacturas {
   flex-direction: column;
   margin: 0;
 }
-
+/**
+Formato del encabezado donde se encuentra el titulo de la pagina
+ */
 #title {
   align-content: center;
   alignment: center;
@@ -43,6 +56,9 @@ app-CFacturas {
   font-weight: bold;
 }
 
+/**
+Formato de los figura de los botones de la pagina
+*/
 #Buttons {
   display: flex;
   margin: 5%;
@@ -51,12 +67,13 @@ app-CFacturas {
   justify-content: space-evenly;
 
 }
-
+/**
+Define las caracteristicas que tendran los botones
+ */
 #Buttons > button {
   width: 30%;
   font-size: larger;
 }
-
 
 p {
   font-size: 20px;

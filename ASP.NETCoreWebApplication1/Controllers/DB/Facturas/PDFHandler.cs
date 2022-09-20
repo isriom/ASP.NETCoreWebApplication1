@@ -9,9 +9,14 @@ using iText.Layout.Element;
 using iText.Layout.Properties;
 
 namespace ASP.NETCoreWebApplication1.Controllers.DB.Facturas;
-
+/**
+ * Clase que maneja la creacion de los pdf para las facturas 
+ */
 public class PDFHandler
 {
+    /**
+     * Metodo que  genera la nueva factura generando un numero para identificarlas 
+     */
     static public string FacturaCita(Data.cita cita)
 
     {
@@ -40,6 +45,9 @@ public class PDFHandler
         return No.ToString();
     }
 
+    /**
+     * Metodo que agrega los datos del cliente que solicito la cita a la factura
+     */
     public static void AddClientdata(Document layoutDocument, Data.cita cita)
     {
         layoutDocument.SetFontSize(12.5f);
@@ -75,7 +83,9 @@ public class PDFHandler
         RemoveBorder(tabla);
         layoutDocument.Add(tabla).SetBorder(Border.NO_BORDER);
     }
-
+    /**
+     * Metodo que agrega los datos del servicio solicitado a la factura 
+     */
     public static void AddServices(Document layoutDocument, Data.cita cita)
     {
         layoutDocument.SetFontSize(12.5f);
@@ -97,6 +107,9 @@ public class PDFHandler
         layoutDocument.Add(tabla);
     }
 
+    /**
+     * Metodo para remover el borde a la tabla donde se agregaron los elementos de la factura 
+     */
     public static void RemoveBorder(Table table)
     {
         foreach (var element1 in table.GetChildren())
@@ -105,7 +118,9 @@ public class PDFHandler
             element.SetBorder(Border.NO_BORDER);
         }
     }
-
+    /**
+     * Metodo para obtener los datos que se ingresaron en el Registro de Citas 
+     */
     public static void CreateMetaData(Data.cita cita, string No)
     {
         var file = File.Create("./Facturas/Metadata/M" + No + ".json");

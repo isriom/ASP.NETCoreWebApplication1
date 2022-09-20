@@ -14,6 +14,9 @@ import {GClientesComponent} from "./GClientes/GClientes.component";
 import {RCitasComponent} from "./RCitas/Rcitas.component";
 import {Popup} from "./Popup/Popup.component";
 
+/**
+ * Declaraciones donde se agregan los componentes que va a tener la barra de menu
+ */
 @NgModule({
   declarations: [
     AppComponent,

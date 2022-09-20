@@ -3,13 +3,18 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from '@angular/router';
 import {Popup} from "../Popup/Popup.component";
 
+/**
+ * Componentes a utilizar para el manejo de la pagina
+ */
 @Component({
   selector: 'app-citas',
   templateUrl: './citas.component.html',
   styleUrls: ['./citas.component.css']
 })
 
-
+/**
+ * Clase donde se desarrollan las acciones de las pagina de citas para la vista Taller
+ */
 export class CitasComponent implements OnInit {
   respuesta: any | undefined;
   http: HttpClient;
@@ -22,12 +27,21 @@ export class CitasComponent implements OnInit {
     })
   };
 
+  /**
+   * Metodo constructor de la clase
+   * @param http variable para poder gestionar el get y post de la pogina
+   * @param baseUrl varaiable para almacenar la direccion de la pagina
+   */
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.http = http;
     this.baseurl = baseUrl;
     this.Obtener_Cita();
   }
 
+  /**
+   * Metodo que crea la pagina en el momento que es solicitada en los componentes de la barra de menu
+   * @constructor metodo donde se hace la llamada
+   */
   async Obtener_Cita() {
     var res = await this.http.get<string>("https://localhost:7143/Citas/plantilla", {
       headers: this.httpOptions.headers,
@@ -40,12 +54,19 @@ export class CitasComponent implements OnInit {
     console.log(this.respuesta);
   }
 
+  /**
+   * Metodo para la inicializar la pagina
+   */
   ngOnInit(): void {
     if (localStorage.getItem("token") == null) {
       this.router?.navigateByUrl("");
     }
   }
 
+  /**
+   * Metodo para definar la accion que debe realizar el boton de Add en la pagina
+   * @constructor metodo relacionado
+   */
   async Add_Button() {
     const answer = {
       'Cliente': (<HTMLInputElement>document.getElementById("Cliente")).value,
@@ -73,6 +94,10 @@ export class CitasComponent implements OnInit {
 
   }
 
+  /**
+   * Metodo para definir la funcionalidad del boton de DELETE
+   * @constructor metodo relacionado
+   */
   async Delete_Button() {
 
   }

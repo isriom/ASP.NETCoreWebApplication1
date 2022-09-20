@@ -2,6 +2,8 @@
 using System.Text;
 using System.Text.Json;
 using ASP.NETCoreWebApplication1.Controllers.DB;
+using Newtonsoft.Json;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 public class DBController
 {
@@ -87,6 +89,8 @@ public class DBController
             Password = cliente.Password;
         }
     }
+
+    
 
     public class Factura : Data.Consulta_factura
     {
@@ -229,6 +233,25 @@ public class DBController
         if (data != null) DB = data;
         return;
     }
+
+    public static void RegistrarTC(Data.G_clientes c)
+    {
+        DB.Clientes.Add(new cliente(c));
+        save();
+    }
+    public static void RegistrarCC(Data.G_ClientesVC C)
+    {
+        DB.Clientes.Add(new cliente(C));
+        save();
+    }
+    
+    public static void RegistrarTT(Data.G_trabajadores T)
+    {
+        DB.Trabajadores.Add(new trabajador(T));
+        Console.Write("Registrado");
+        save();
+    }
+    
 
     public static void save()
     {

@@ -1,7 +1,9 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {RCitasComponent} from "./Rcitas.component";
-
+/**
+ * Metodo para realizar la configuracion del angular
+ */
 describe('RCitasComponent', () => {
   let component: RCitasComponent;
   let fixture: ComponentFixture<RCitasComponent>;

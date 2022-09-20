@@ -9,10 +9,10 @@ namespace ASP.NETCoreWebApplication1.Controllers;
 
 [ApiController]
 [Authorize]
+[Authorize (Roles = "Cliente")]
 public class CFacturasController : Controller
 {
-    private static CFacturasController? _instance;
-    private List<Data.Consulta_factura> Factura = new();
+    
     private Data.Consulta_factura facturap;
 
     public CFacturasController()

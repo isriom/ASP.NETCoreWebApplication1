@@ -2,11 +2,17 @@ import {Component, Inject} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Popup} from "../Popup/Popup.component";
 
+/**
+ * Componentes utilizados para el funcionamiento de la pagina
+ */
 @Component({
   selector: 'app-Clientes',
   templateUrl: './Clientes.component.html',
   styleUrls: ['./Clientes.component.css']
 })
+/**
+ * Clase donde se desarrolla las funcionalidades de la pagina de Cliente en la vista Taller
+ */
 export class ClientesComponent {
   token = sessionStorage.getItem("tokenKey");
   respuesta = {};
@@ -19,12 +25,21 @@ export class ClientesComponent {
     })
   };
 
+  /**
+   * Constructor de la clase
+   * @param http variable para la manipulacion del get y post
+   * @param baseUrl variable para manejar la direccion de la pagina
+   */
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.http = http;
     this.baseurl = baseUrl;
     this.Obtener_Clientes();
   }
 
+  /**
+   * Metodo que el cual direcciona a la pagina de clientes al ser solicitada en la barra de menu
+   * @constructor metodo relacionado
+   */
   async Obtener_Clientes() {
     var res = await this.http.get<string>("https://localhost:7143/Clientes/plantilla", {
       headers: this.httpOptions.headers,
@@ -37,6 +52,10 @@ export class ClientesComponent {
     console.log(this.respuesta);
   }
 
+  /**
+   * Metodo donde se definen las acciones a realizar al clickear el boton de ADD
+   * @constructor metodo relacionado
+   */
   async Add_Button() {
     const answer = {
       'Nombre_Completo': (<HTMLInputElement>document.getElementById("Nombre_Completo")).value,
@@ -67,6 +86,10 @@ export class ClientesComponent {
     console.log(res)
   }
 
+  /**
+   * Metodo donde se define la funcion del boton DELETE
+   * @constructor
+   */
   async Delete_Button() {
 
   }
