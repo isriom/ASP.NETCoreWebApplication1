@@ -4,15 +4,26 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ASP.NETCoreWebApplication1.Controllers;
-
+/**
+ * Permisos del api para el tema de autorizaciones
+ */
 [ApiController]
 [Authorize]
 [Authorize(Roles = "Cliente")]
+
+/*
+ * Clase Controladora del componente para consultar las facturas 
+ */
 public class CFacturasController : Controller
 {
+    /*
+     * Definicion de la variable 
+     */
     private Data.Consulta_factura facturap;
 
-
+    /**
+     * Metodo que define una accion resultante
+     */
     [HttpGet]
     [Route("[controller]/{data}")]
     public ActionResult Register(string? data)
@@ -20,7 +31,9 @@ public class CFacturasController : Controller
         var jsonstring = JsonSerializer.Serialize(facturap);
         return Content(jsonstring);
     }
-
+    /**
+     * Metodo que define una accion
+     */
     [HttpGet]
     [Route("[controller]/{id:int}")]
     public ActionResult Consult(int? id)
@@ -29,7 +42,9 @@ public class CFacturasController : Controller
         return Content(jsonstring);
     }
 
-
+    /**
+     * Metodo que define una accion resultante que define y comprueba la estructura que se debe ingresar
+     */
     [HttpGet]
     [Route("[controller]/plantilla")]
     public ActionResult template()
@@ -44,7 +59,9 @@ public class CFacturasController : Controller
 
         return Content(jsonstring);
     }
-
+    /**
+     * Metodo donde se define la logica de la accion que realiza el boton
+     */
     [HttpPost]
     [Route("[controller]/post")]
     public ActionResult Insert(Data.Consulta_factura data)

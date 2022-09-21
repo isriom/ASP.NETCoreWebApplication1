@@ -2,13 +2,18 @@
 using System.Text;
 using System.Text.Json;
 using ASP.NETCoreWebApplication1.Controllers.DB;
-
+/**
+ * Clase controladora de la base de datos creada en un archivo json
+ */
 public class DBController
 {
+    /**
+     * Definicion de la base de datos que se va a utilizar
+     */
     public static DBController DB;
 
     /**
-     * 
+     * Metodo de creacion de la estructura base de la base de datos la cual se componente de 4 listas
      */
     public DBController(cita[] citas, trabajador[] trabajadores, cliente[] clientes, Factura[] facturas)
     {
@@ -20,7 +25,7 @@ public class DBController
     }
 
     /**
-     * 
+     * Metodo constructor de la clase donde se crean instancias base
      */
     public DBController()
     {
@@ -45,30 +50,29 @@ public class DBController
     }
 
     /**
-     * 
+     * Metodo de definicion y las funciones get y set para la manipulacion de la Entidad Cita
      */
     public List<cita> Citas { get; set; }
 
     /**
-     * 
+     * Metodo de definicion y las funciones get y set para la manipulacion de la Entidad Trabajadores
      */
 
     public List<trabajador> Trabajadores { get; set; }
 
     /**
-     * 
+     * Metodo de definicion y las funciones get y set para la manipulacion de la Entidad Clientes
      */
 
     public List<cliente> Clientes { get; set; }
 
     /**
-     * 
+     * Metodo de definicion y las funciones get y set para la manipulacion de los datos de la 
      */
-
     public List<Factura> Facturas { get; set; }
 
     /**
-     * 
+     * Metodo para encontrar el usuario dentro la base de datos y verificar el rol que cumple
      */
     public static string FoundUser(string name, string pass)
     {
@@ -89,7 +93,9 @@ public class DBController
 
         return "No Found";
     }
-
+    /**
+     * Metodo para saber si la factura esta relacionada al cliente
+     */
     public static bool IsOwner(string name, double? Nfactura)
     {
         foreach (var factura in DB.Facturas)
@@ -102,24 +108,33 @@ public class DBController
         return false;
     }
 
-
+    /**
+     * Metodo para agregar la factura y la cita al la base de datos al mismo tiempo cuando se genera la factura 
+     */
     public static void RegistrarCitayFactura(Data.cita cita, double NO)
     {
         AddCita(cita, NO);
         AddFactura(cita, NO);
     }
-
+    /**
+     * Metodo para agregar la cita a la base de datos
+     */
     public static void AddCita(Data.cita cita, double No)
     {
         DB.Citas.Add(new cita(cita, No));
     }
-
+    /**
+     * Metodo para agregar la factura a la base de datos y actualizar el archivo
+     */
     public static void AddFactura(Data.cita cita, double No)
     {
         DB.Facturas.Add(new Factura(new Data.Consulta_factura(cita.Cliente, No)));
         save();
     }
 
+    /**
+     * Metodo para cargar el archivo .json a la API y poder manipularlo
+     */
     public static void load()
     {
         var file = File.ReadAllText("./controllers/DB/DB.json");
@@ -127,27 +142,36 @@ public class DBController
 
         if (data != null) DB = data;
     }
-
+    /**
+     * Metodo para registrar el cliente en la vista Taller en la base de datos
+     */
     public static void RegistrarTC(Data.G_clientes c)
     {
         DB.Clientes.Add(new cliente(c));
         save();
     }
-
+    /**
+     * Metodo para registrar el cliente en la vista Cliente en la base de datos
+     */
     public static void RegistrarCC(Data.G_ClientesVC C)
     {
         DB.Clientes.Add(new cliente(C));
         save();
     }
-
+    
+    /**
+     * Metodo para registrar el Trabajador en la vista Taller en la base de datos
+     */
     public static void RegistrarTT(Data.G_trabajadores T)
     {
         DB.Trabajadores.Add(new trabajador(T));
         Console.Write("Registrado");
         save();
     }
-
-
+    
+    /**
+     * Metodo para poder actualizar el archivo json cuando se agregan nuevos datos 
+     */
     public static void save()
     {
         var file = File.Create("./controllers/DB/DB.json");
@@ -159,6 +183,9 @@ public class DBController
         file.Close();
     }
 
+    /**
+     * Metodo donde se crea el archivo json en la carpeta de DB del proyecto 
+     */
     public static void init()
     {
         var file = File.Create("./controllers/DB/DB.json");
@@ -174,12 +201,20 @@ public class DBController
         file.Close();
     }
 
+    /**
+     * Clase donde se maneja la estructura de la cita que se inserta al archivo json con la informacion tomada del API
+     */
     public class cita : Data.cita
     {
+        /**
+         * Metodo constructor de la clase
+         */
         public cita()
         {
         }
-
+        /**
+         * Metodo donde se define la estructura de la cita  y los datos que se toman 
+         */
         public cita(Data.cita cita, double No)
         {
             Cliente = cita.Cliente;
@@ -188,16 +223,27 @@ public class DBController
             Servicio_solicitado = cita.Servicio_solicitado;
             Number = No;
         }
-
+        /**
+         * Metodo de get y set para manejar el numero de la factura 
+         */
         public double Number { get; set; }
     }
-
+    
+    /**
+     * Clase donde se maneja la estructura de la trabajador que se inserta al archivo json con la informacion tomada del API
+     */
     public class trabajador : Data.G_trabajadores
     {
+        /**
+         * Metodo de constructor 
+         */
         public trabajador()
         {
         }
-
+        
+        /**
+         * Metodo donde se define la estructura del trabajador que sea va a agregar a la base de datos 
+         */
         public trabajador(Data.G_trabajadores trabajador)
         {
             Nombre = trabajador.Nombre;
@@ -210,13 +256,22 @@ public class DBController
             Rol = trabajador.Rol;
         }
     }
-
+    
+    /**
+     * Clase donde se la estructura del cliente en general para la base de datos 
+     */
     public class cliente : Data.G_ClientesVC
     {
+        /**
+         * Metodo Constructor
+         */
         public cliente()
         {
         }
-
+        
+        /**
+         * Metodo donde se registran los datos del cliente desde la vista Taller y se generan las contrasenas aleatorias para agregarlos a la base de datos
+         */
         public cliente(Data.G_clientes cliente)
         {
             Nombre_Completo = cliente.Nombre_Completo;
@@ -238,6 +293,10 @@ public class DBController
             Password = No.ToString();
         }
 
+        /**
+         * Metodo donde se registran los datos del cliente desde la vista del Cliente 
+         */
+         
         public cliente(Data.G_ClientesVC cliente)
         {
             Nombre_Completo = cliente.Nombre_Completo;
@@ -252,13 +311,21 @@ public class DBController
         }
     }
 
-
+    /**
+     * Clase donde se maneja la estructura de la factura 
+     */
     public class Factura : Data.Consulta_factura
     {
+        /**
+         * Metodo Constructor de la clase
+         */
         public Factura()
         {
         }
 
+        /**
+         * Metodo de donde se registran lso datos del API para ingregarlos a la base de datos 
+         */
         public Factura(Data.Consulta_factura factura)
         {
             Cliente = factura.Cliente;

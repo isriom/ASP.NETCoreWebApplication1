@@ -5,15 +5,25 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ASP.NETCoreWebApplication1.Controllers;
-
+/**
+ * Permisos del api para el tema de autorizaciones
+ */
 [ApiController]
 [Authorize]
 [Authorize(Roles = "Cliente")]
+
+/*
+ * Clase Controladora del componente de las Citas para la vista del Cliente
+ */
 public class RCitasController : Controller
 {
+    //Variable de estructura
     private Data.cita prueba;
 
 
+    /**
+     * Metodo que define una accion resultante
+     */
     [HttpGet]
     [Route("[controller]/{data}")]
     public ActionResult Register(string? data)
@@ -22,6 +32,9 @@ public class RCitasController : Controller
         return Content(jsonstring);
     }
 
+    /**
+     * Metodo que define una accion resultante
+     */
     [HttpGet]
     [Route("[controller]/{id:int}")]
     public ActionResult Consult(int? id)
@@ -31,6 +44,9 @@ public class RCitasController : Controller
     }
 
 
+    /**
+     * Metodo que define una accion resultante que define y comprueba la estructura que se debe ingresar siendo una platilla
+     */
     [HttpGet]
     [Route("[controller]/plantilla")]
     public ActionResult template()
@@ -48,6 +64,9 @@ public class RCitasController : Controller
         return Content(jsonstring);
     }
 
+    /**
+     * Metodo donde se define la logica de la accion que realiza el boton de Add para poder crear el PDF y registrar la cita
+     */
     [HttpPost]
     [Route("[controller]/post")]
     public ActionResult Insert(Data.cita cita)

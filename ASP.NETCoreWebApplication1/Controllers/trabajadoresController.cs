@@ -5,14 +5,25 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ASP.NETCoreWebApplication1.Controllers;
 
+/**
+ * Permisos del api para el tema de autorizaciones
+ */
 [ApiController]
 [Authorize]
 [Authorize(Roles = "Trabajador")]
+
+/*
+ * Clase Controladora del componente de los Trabajadores desde la vista del Trabajador
+ */
 public class trabajadoresController : Controller
 {
+    //Variable de estrutura
     private Data.G_trabajadores ejemplo;
 
 
+    /**
+     * Metodo que define una accion resultante
+     */
     [HttpGet]
     [Route("[controller]/{data}")]
     public ActionResult Register(string? data)
@@ -21,6 +32,9 @@ public class trabajadoresController : Controller
         return Content(jsonstring);
     }
 
+    /**
+     * Metodo que define una accion resultante
+     */
     [HttpGet]
     [Route("[controller]/{id:int}")]
     public ActionResult Consult(int? id)
@@ -30,6 +44,9 @@ public class trabajadoresController : Controller
     }
 
 
+    /**
+     * Metodo que define una accion resultante que define y comprueba la estructura que se debe ingresar siendo una platilla
+     */
     [HttpGet]
     [Route("[controller]/plantilla")]
     public ActionResult template()
@@ -51,6 +68,9 @@ public class trabajadoresController : Controller
         return Content(jsonstring);
     }
 
+    /**
+     * Metodo donde se define la logica de la accion que realiza el boton de Add para poder registrar el trabajador
+     */
     [HttpPost]
     [Route("[controller]/post")]
     public ActionResult Insert(Data.G_trabajadores trabajador)

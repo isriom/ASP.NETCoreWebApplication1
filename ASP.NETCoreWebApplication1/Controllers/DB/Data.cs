@@ -266,26 +266,44 @@ public class Data
             Cliente = cliente;
             Numero_de_Factura = No;
         }
-
+        /**
+         * Metodo get y set para el manejo de datos del cliente
+         */
         public string? Cliente { get; set; }
+        /**
+         * Metodo get y set para el manejo de numero de factura 
+         */
         public double? Numero_de_Factura { get; set; }
     }
-
+    
+    /**
+     * Clase que manipula informacion del login
+     */
     public class loginUser
     {
+       /**
+        * Constructor
+        */
         public loginUser()
         {
             Usuario = "";
             Contraseña = "";
         }
-
+        /**
+         * Metodo  para obtener la info 
+         */
         public loginUser(string? contraseña = null, string usuario = null)
         {
             Usuario = usuario;
             Contraseña = contraseña;
         }
-
+        /**
+         * Metodo get y set para manejo del Usuario
+         */
         public string? Usuario { get; set; }
+        /**
+         * Metodo get y set para manejo del Constrasena
+         */
         public string? Contraseña { get; set; }
     }
 }

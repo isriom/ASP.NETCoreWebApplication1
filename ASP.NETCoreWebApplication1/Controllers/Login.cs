@@ -9,10 +9,18 @@ using Microsoft.AspNetCore.Mvc;
 namespace ASP.NETCoreWebApplication1.Controllers;
 
 [ApiController]
+
+/*
+ * Clase Controladora del componente del Login de la Pagina
+ */
 public class loginController : Controller
 {
+    // Variable de estructura
     public Data.loginUser template = new();
 
+    /**
+     * Metodo donde se define una plantilla de verificacion
+     */
     [AllowAnonymous]
     [HttpGet]
     [Route("login/plantilla")]
@@ -24,6 +32,9 @@ public class loginController : Controller
         return Content(jsonstring);
     }
 
+    /**
+     * Metodo donde se realiza la autorizacion de los usuarios cuando se presiona el boton de Sign In
+     */
     [AllowAnonymous]
     [HttpPut]
     [Route("/login/Singin")]
@@ -68,6 +79,9 @@ public class loginController : Controller
         return NotFound(data);
     }
 
+    /**
+     * Metodo que realiza la autenticacion del usuario 
+     */
     private async Task<string> AuthenticateUser(string id, string password)
     {
         //Implementar codigo para revisar base de datos
@@ -75,6 +89,9 @@ public class loginController : Controller
         return role;
     }
 
+    /**
+     * Metodo que determina la accion al presionar el boton de Log Out 
+     */
     [AllowAnonymous]
     [HttpPut]
     [Route("/logout")]
