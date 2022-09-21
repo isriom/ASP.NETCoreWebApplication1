@@ -51,6 +51,7 @@ export class CFacturasComponent implements OnInit {
    * @constructor metodo al que se encuentra relacionado
    */
   async Consultar_Factura() {
+
     var res = await this.http.get<string>("https://localhost:7143/CFacturas/plantilla", {
       headers: this.httpOptions.headers,
       withCredentials: true

@@ -1,6 +1,7 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from '@angular/router';
+import {Popup} from "../Popup/Popup.component";
 
 /**
  * Componentes utilizados para el funcionamiento de la pagina
@@ -14,11 +15,12 @@ import {Router} from '@angular/router';
 /**
  * Clase donde se desarrolla las funcionalidades de la pagina del Registro de Citas en la vista Cliente
  */
-export class RCitasComponent {
+export class RCitasComponent implements OnInit {
   respuesta: any | undefined;
   http: HttpClient;
   router: Router | undefined;
   baseurl: string;
+  name: string | null;
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -35,6 +37,7 @@ export class RCitasComponent {
     this.http = http;
     this.baseurl = baseUrl;
     this.Obtener_Cita();
+    this.name = sessionStorage.getItem("Nombre");
   }
 
   /**
@@ -47,6 +50,7 @@ export class RCitasComponent {
       withCredentials: true
     }).subscribe(result => {
       this.respuesta = result;
+      this.respuesta.Cliente = this.name;
       console.log(this.respuesta);
 
     }, error => console.error(error));
@@ -72,10 +76,18 @@ export class RCitasComponent {
       withCredentials: true,
     })
     res.subscribe(result => {
-      this.respuesta = result;
+      this.Obtener_Cita();
+
+      Popup.open("CITA REGISTRADA", "Se ha registrado la cita bajo la factura #" + result, "Imprimir");
+
       console.log(this.respuesta);
 
-    }, error => console.error(error));
+    }, error => {
+      Popup.open("ERROR REGISTRANDO CITA", "Ha ocurrido un error registrando la cita, por favor revise que el cliente coincida con su usuario ", "Cerrar");
+
+      console.error(error)
+    });
+
     console.log(res)
   }
 
@@ -84,6 +96,15 @@ export class RCitasComponent {
    * @constructor metodo relacionado
    */
   async Delete_Button() {
+
+  }
+
+  ngOnInit(): void {
+    this.name = sessionStorage.getItem("Nombre");
+    if (this.name !== null && document.getElementById("Cliente") !== null) {
+
+      (<HTMLInputElement>document.getElementById("Cliente")).value = this.name;
+    }
 
   }
 }

@@ -53,10 +53,10 @@ public class RCitasController : Controller
     {
         prueba = new Data.cita();
         User.IsInRole("Administrators");
-        prueba.Cliente = "Cliente de prueba";
-        prueba.Placa_del_Vehiculo = 1115486;
-        prueba.Sucursal = "Sucursal de prueba";
-        prueba.Servicio_solicitado = "Servicio de prueba";
+        prueba.Cliente = "";
+        prueba.Placa_del_Vehiculo = null;
+        prueba.Sucursal = "";
+        prueba.Servicio_solicitado = "";
 
 
         var jsonstring = JsonSerializer.Serialize(prueba);
@@ -72,6 +72,10 @@ public class RCitasController : Controller
     public ActionResult Insert(Data.cita cita)
     {
         Console.Out.Write("Creando el pdf");
+        if (cita.Cliente!=User.Identity.Name)
+        {
+            return Unauthorized();
+        }
         var numeroF = PDFHandler.FacturaCita(cita);
         DBController.RegistrarCitayFactura(cita, Convert.ToDouble(numeroF));
         return CreatedAtAction(nameof(Insert), numeroF);

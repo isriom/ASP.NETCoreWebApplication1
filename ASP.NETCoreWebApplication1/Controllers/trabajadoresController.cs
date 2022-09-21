@@ -52,7 +52,6 @@ public class trabajadoresController : Controller
     public ActionResult template()
     {
         ejemplo = new Data.G_trabajadores();
-        User.IsInRole("Administrators");
         ejemplo.Nombre = "Arnoldo";
         ejemplo.Apellidos = "Perez Mora";
         ejemplo.Numero_Cedula = 258741028;

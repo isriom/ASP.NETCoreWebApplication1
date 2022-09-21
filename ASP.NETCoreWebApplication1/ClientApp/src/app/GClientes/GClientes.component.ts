@@ -1,6 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Router} from "@angular/router";
+import {Popup} from "../Popup/Popup.component";
 
 /**
  * Componentes utilizados para el funcionamiento de la pagina
@@ -70,7 +71,10 @@ export class GClientesComponent {
       'Usuario': (<HTMLInputElement>document.getElementById("Usuario")).value,
       'Password': (<HTMLInputElement>document.getElementById("Password")).value
     };
-
+    if (answer.Usuario !== sessionStorage.getItem("Nombre")) {
+      Popup.open("ERROR MODIFICANDO LOS DATOS", "No es posible modificar el usuario ni el numero de cedula desde aqui, por favor contacte con MecaTEC", "Cerrar");
+      return
+    }
     console.log(this.respuesta);
     console.log(answer);
     let res = await this.http.post("https://localhost:7143/GClientes/post", JSON.stringify(answer), {
@@ -78,7 +82,9 @@ export class GClientesComponent {
       withCredentials: true,
     })
     res.subscribe(result => {
-      this.respuesta = result;
+      Popup.open("Datos Modificados", "Se han modificado los datos", "Cerrar");
+
+      this.Obtener_Clientes();
       console.log(this.respuesta);
 
     }, error => console.error(error));

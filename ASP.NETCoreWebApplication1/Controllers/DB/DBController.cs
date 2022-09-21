@@ -2,6 +2,7 @@
 using System.Text;
 using System.Text.Json;
 using ASP.NETCoreWebApplication1.Controllers.DB;
+
 /**
  * Clase controladora de la base de datos creada en un archivo json
  */
@@ -72,6 +73,21 @@ public class DBController
     public List<Factura> Facturas { get; set; }
 
     /**
+     * Metodo para obtener los datos del usuario actual en la base de datos
+     */
+    public static Data.G_ClientesVC GetdUser(string name)
+    {
+        foreach (var cliente in DB.Clientes)
+            if (cliente.Usuario == name)
+            {
+                return cliente;
+            }
+
+        return new Data.G_ClientesVC();
+    }
+
+
+    /**
      * Metodo para encontrar el usuario dentro la base de datos y verificar el rol que cumple
      */
     public static string FoundUser(string name, string pass)
@@ -93,6 +109,7 @@ public class DBController
 
         return "No Found";
     }
+
     /**
      * Metodo para saber si la factura esta relacionada al cliente
      */
@@ -116,6 +133,7 @@ public class DBController
         AddCita(cita, NO);
         AddFactura(cita, NO);
     }
+
     /**
      * Metodo para agregar la cita a la base de datos
      */
@@ -123,6 +141,7 @@ public class DBController
     {
         DB.Citas.Add(new cita(cita, No));
     }
+
     /**
      * Metodo para agregar la factura a la base de datos y actualizar el archivo
      */
@@ -142,6 +161,7 @@ public class DBController
 
         if (data != null) DB = data;
     }
+
     /**
      * Metodo para registrar el cliente en la vista Taller en la base de datos
      */
@@ -150,15 +170,28 @@ public class DBController
         DB.Clientes.Add(new cliente(c));
         save();
     }
+
     /**
      * Metodo para registrar el cliente en la vista Cliente en la base de datos
      */
     public static void RegistrarCC(Data.G_ClientesVC C)
     {
-        DB.Clientes.Add(new cliente(C));
-        save();
+        foreach (var cliente in DB.Clientes)
+            if (cliente.Usuario == C.Usuario)
+            {
+                cliente.Correo_electronico=C.Correo_electronico;
+                cliente.Direccion_1=C.Direccion_1;
+                cliente.Direccion_2=C.Direccion_2;
+                cliente.Telefono_1=C.Telefono_1;
+                cliente.Telefono_2=C.Telefono_2;
+                cliente.Password=C.Password;
+                cliente.Nombre_Completo=C.Nombre_Completo;
+                save();
+                return;
+            }
+
     }
-    
+
     /**
      * Metodo para registrar el Trabajador en la vista Taller en la base de datos
      */
@@ -168,7 +201,7 @@ public class DBController
         Console.Write("Registrado");
         save();
     }
-    
+
     /**
      * Metodo para poder actualizar el archivo json cuando se agregan nuevos datos 
      */
@@ -212,6 +245,7 @@ public class DBController
         public cita()
         {
         }
+
         /**
          * Metodo donde se define la estructura de la cita  y los datos que se toman 
          */
@@ -223,12 +257,13 @@ public class DBController
             Servicio_solicitado = cita.Servicio_solicitado;
             Number = No;
         }
+
         /**
          * Metodo de get y set para manejar el numero de la factura 
          */
         public double Number { get; set; }
     }
-    
+
     /**
      * Clase donde se maneja la estructura de la trabajador que se inserta al archivo json con la informacion tomada del API
      */
@@ -240,7 +275,7 @@ public class DBController
         public trabajador()
         {
         }
-        
+
         /**
          * Metodo donde se define la estructura del trabajador que sea va a agregar a la base de datos 
          */
@@ -256,7 +291,7 @@ public class DBController
             Rol = trabajador.Rol;
         }
     }
-    
+
     /**
      * Clase donde se la estructura del cliente en general para la base de datos 
      */
@@ -268,7 +303,7 @@ public class DBController
         public cliente()
         {
         }
-        
+
         /**
          * Metodo donde se registran los datos del cliente desde la vista Taller y se generan las contrasenas aleatorias para agregarlos a la base de datos
          */
@@ -296,7 +331,6 @@ public class DBController
         /**
          * Metodo donde se registran los datos del cliente desde la vista del Cliente 
          */
-         
         public cliente(Data.G_ClientesVC cliente)
         {
             Nombre_Completo = cliente.Nombre_Completo;

@@ -9,7 +9,6 @@ namespace ASP.NETCoreWebApplication1.Controllers;
  */
 [ApiController]
 [Authorize]
-[Authorize(Roles = "Cliente")]
 
 /*
  * Clase Controladora del componente para consultar las facturas 
