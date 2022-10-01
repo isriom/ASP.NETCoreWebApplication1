@@ -8,6 +8,7 @@
         <SpaProxyServerUrl>https://localhost:44477</SpaProxyServerUrl>
         <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
         <ImplicitUsings>enable</ImplicitUsings>
+        <RootNamespace>ASP.NETCoreWebApplication1</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
